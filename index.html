@@ -1,11 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+        crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous"></script> -->
+    <title>Editor de Memes</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./media.css">
 </head>
+
 <body>
-    
+    <header>
+        <nav>
+            <h1>Generador de Memes</h1>
+            <ul class="menuOpciones">
+                <li class="opcion" tabindex="0">
+                    <button type="button" id="botonImagen">
+                        <div class="contorno">
+                            <!-- <i class="far fa-file-image botonIconoTexto " aria-hidden="true"></i> -->
+                            <i class="fas fa-file-image botonIconoTexto" aria-hidden="true"></i>
+                            <p>IMAGEN</p>
+                        </div>
+                    </button>
+                </li>
+                <li class="opcion" tabindex="0">
+                    <button type="button" id="botonTexto">
+                        <div class="contorno">
+                            <i class="fas fa-font botonIconoTexto" aria-hidden="true"></i>
+                            <p>TEXTO</p>
+                        </div>
+                    </button>
+                </li>
+                <li class="opcion" tabindex="0">
+                    <button type="button" id="botonModo">
+                        <div class="contorno">
+                            <!-- <i class="far fa-lightbulb botonIconoTexto" aria-hidden="true"></i> -->
+                            <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true"></i>
+                            <p>MODO OSCURO</p>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="panel">
+            <div id="panel" tabindex="0">
+                <button id="cierrePanel"  type="button">x</button>
+                <section class="panelImagen">
+                    <div id="panelDerechoImagen">
+                        <h3 class="tituloPanel">IMAGEN</h3>
+                        <div id="ingreso" class="contenIngresoURL">
+                            <label for="url">URL</label>
+                            <input id="ingresoURL" tabindex="0" type="text" name="url"
+                                placeholder="" required>
+                        </div>
+                        <div id="ingreso" class="contenIngresoURL">
+                            <label for="fondo">FONDO</label>
+                            <input id="ingresoURL" tabindex="0" type="text" name="url"
+                                placeholder="" required>
+                                <input id="ingresoURL" tabindex="0" type="text" name="url"
+                                placeholder="" required>
+                        </div>
+                    </div>
+                </section>
+                <section class="panelTexto">
+                    <div id="panelDerechoTexto">
+                        <h3 class="tituloPanel">TEXTO</h3>
+                        <div id="textSup" class="contenIngresoDato">
+                            <label for="superior">SUPERIOR</label>
+                            <input id="ingresoTextoSuperior" tabindex="0" type="text" name="superior"
+                                placeholder="TOP TEXT" required>
+                        </div>
+                        <div id="textInf" class="contenIngresoDato">
+                            <label for="inferior">INFERIOR</label>
+                            <input id="ingresoTextoInferior" tabindex="0" type="text" name="inferior"
+                                placeholder="BOTTOM TEXT" required>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <div class="contenedor">
+            <div class="tarjeta">
+                <div class="franja" id="franja-1">
+                    <h2 id="textoArriba">TOP TEXT</h2>
+                </div>
+                <div id="franja2" class="franja franja-2">
+                    <!-- <img src="" alt=""> -->
+                </div>
+                <div class="franja franja-3">
+                    <h2 id="textoAbajo">BOTTOM TEXT</h2>
+                </div>
+            </div>
+        </div>
+        <!-- <section class="imagenFondo">
+            <img id="imagenMonigote" src="./imagen/monigote.gif" alt="monigote.gif">
+        </section> -->
+
+    </main>
+    <footer>
+        <div class="botonDescarga" tabindex="0">
+            <button>Descargar meme</button>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
 </body>
+
 </html>
