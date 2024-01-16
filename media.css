@@ -1,45 +1,69 @@
-@media (min-width:300px) and (max-width:699px){
-    h1{
-        /* width:80%; */
-        font-size: 180%;
-      }
-      ul{
-        background-color: rgb(161, 126, 126);
-      }
-      li{
-        font-size: 0.9rem;
-      }
+@media (min-width:282px) and (max-width:699px) {
+
+  /* .contenedor{
     
-      #panelDerecho{
-        width:100%;
-      }
+    width:55%;   */
+  h1 {
+    /* width:80%; */
+    font-size: 180%;
+    margin-block: 15px;
+  }
+
+  ul {
+       /* background-color: rgb(161, 126, 126); */
+       
+  }
+
+  li {
+    font-size: 0.9rem;
+  }
+
+  #panel {
+    width: 100%;
+  }
 }
-@media (min-width:700px) and (max-width:1299px){
-    h1{
-        /* width:80%; */
-        font-size: 200%;
-      }
-      ul{
-        background-color: rgb(140, 161, 126);
-      }
-      li p{
-        font-size: 0.7rem;
-      }
-      
+
+@media (min-width:700px) and (max-width:1299px) {
+  .contenedor {
+    /* width:600px; */
+    width: 60%;
+  }
+
+  h1 {
+    /* width:80%; */
+    font-size: 200%;
+  }
+
+  ul {
+    /* background-color: rgb(140, 161, 126); */
+  }
+
+  li p {
+    font-size: 0.7rem;
+  }
+
 }
 
 @media (min-width:1300px) {
-    h1{
-        /* width:80%; */
-        font-size: 200%;
-      }
-      ul{
-        background-color: rgb(128, 126, 161);
-      }
-      #panelDerecho{
-        display:block;
-      }
-      #cierrePanel{
-        display:none;
-      }
+  .contenedor {
+    /* width:600px; */
+    width: 55%;
+  }
+
+  h1 {
+    /* width:80%; */
+    font-size: 200%;
+  }
+
+  ul {
+    background-color: rgb(128, 126, 161);
+  }
+
+  #panel {
+    display: block;
+  }
+
+  #cierrePanel {
+    display: none;
+  }
 }
