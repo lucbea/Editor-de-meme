@@ -9,24 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-        crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
-        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
-        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
+        
     <title>Editor de Memes</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./media.css">
 </head>
 
-<body>
+<body id="body">
 
     <header>
-        <nav>
+        <nav id="nav">
             <h1>Generador de Memes</h1>
             <ul class="menuOpciones">
                 <li class="opcion" tabindex="0">
@@ -48,10 +44,10 @@
                 </li>
                 <li class="opcion" tabindex="0">
                     <button type="button" id="botonModo">
-                        <div class="contornoBoton">
+                        <div id="modoClaroOscuro" class="contornoBoton">
                             <!-- <i class="far fa-lightbulb botonIconoTexto" aria-hidden="true"></i> -->
                             <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true"></i>
-                            <p>MODO OSCURO</p>
+                            <p id="modoClaOsc">MODO OSCURO</p>
                         </div>
                     </button>
                 </li>
@@ -59,16 +55,16 @@
         </nav>
     </header>
     <main>
-        <section class="contenedorImgText">
+        <section id="contenedorImgText" class="contenedorImgText">
             <div class="contenedor">
-                <div class="tarjeta">
-                    <div class="franja" id="franja-1">
+                <div id="tarjeta" class="tarjeta">
+                    <div class="franja" id="franja1">
                         <h2 id="textoArriba">TOP TEXT</h2>
                     </div>
                     <div id="franja2" class="franja franja-2">
                         <!-- <img src="" alt=""> -->
                     </div>
-                    <div class="franja franja-3">
+                    <div  id="franja3" class="franja franja-3">
                         <h2 id="textoAbajo">BOTTOM TEXT</h2>
                     </div>
                 </div>
@@ -165,9 +161,9 @@
                                 <input id="ingresoTextoSuperior" tabindex="0" type="text" name="superior"
                                     placeholder="TOP TEXT" required>
                                 <div class="opcion tilde">
-                                    <input type="checkbox" class="opcionTextoSuperior" name="opcionTextoSuperior"
+                                    <input type="checkbox" id="sinTextoSuperior" class="opcionTextoSuperior" name="opcionTextoSuperior"
                                         value="aceptado">
-                                    <label for="opcionTextoSuperior">Sin texto superior</label>
+                                    <label for="sinTextoSuperior">Sin texto superior</label>
                                 </div>
                             </div>
                             <div id="textInf" class="contenIngreso">
@@ -175,9 +171,9 @@
                                 <input id="ingresoTextoInferior" tabindex="0" type="text" name="inferior"
                                     placeholder="BOTTOM TEXT" required>
                                 <div class="opcion tilde">
-                                    <input type="checkbox" id="opcionTextoInferior" name="opcionTextoInferior"
+                                    <input type="checkbox" id="sinTextoInferior" class="sinTextoInferior"  name="opcionTextoInferior"
                                         value="aceptado">
-                                    <label for="opcionTextoInferior">Sin texto inferior</label>
+                                    <label for="sinTextoInferior">Sin texto inferior</label>
                                 </div>
                             </div>
                             <div id="formatoTexto" class="contenIngreso">
@@ -194,20 +190,20 @@
                                     <option value="Times New Roman">TIMES NEW ROMAN</option>
                                 </select>
                                 <div id="tamanioFuenteAlinea">
-                                    <input type="number" name="size" min="12" max="161" step="1" value="26">
+                                    <input id="tamanioFuente" type="number" name="size" min="12" max="161" step="1" value="36">
                                     <div id="alineacion">
-                                        <button class="alineacion">
+                                        <button id="alineaIzq" class="alineacion">
                                             <i class="fas fa-align-left iconoAlineacion" aria-hidden="true"></i>
                                         </button>
-                                        <button class="alineacion">
+                                        <button id="alineaCen" class="alineacion">
                                             <i class="fas fa-align-center iconoAlineacion" aria-hidden="true"></i>
                                         </button>
-                                        <button class="alineacion">
+                                        <button id="alineaDer" class="alineacion">
                                             <i class="fas fa-align-right iconoAlineacion" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             <div id="ingresoColorYTexto" class="contenIngreso">
                                 <div class="contenIngresoColorYFondo ">
                                     <div>
@@ -220,10 +216,10 @@
                                     </div>
                                     <div>
                                         <h3 class="subtitulo">FONDO</h3>
-                                        <div class="fondoTexto ingresoEtiqueta">
-                                            <input id="colorFondo" tabindex="0" type="color" name="colorFondo"
+                                        <div id="" class="fondoTexto ingresoEtiqueta">
+                                            <input id="colorFondoTex" tabindex="0" type="color" name="colorFondo"
                                                 value="#FFFFFF">
-                                            <label for="colorFondo">#FFFFFF</label>
+                                            <label for="colorFondoTex">#FFFFFF</label>
                                         </div>
                                     </div>
                                 </div>
@@ -239,14 +235,14 @@
                         <div id="contorno" class="contenIngreso">
                             <h3 class="subtitulo">CONTORNO</h3>
                             <div class="formatoBotonesContorno">
-                                <button class="opcionContorno ingresoEtiqueta">NINGUNO</button>
-                                <button class="opcionContorno ingresoEtiqueta">CLARO</button>
-                                <button class="opcionContorno ingresoEtiqueta">OSCURO</button>
+                                <button id="opcionContNinguno" class="opcionContorno ingresoEtiqueta">NINGUNO</button>
+                                <button id="opcionContClaro" class="opcionContorno ingresoEtiqueta">CLARO</button>
+                                <button id="opcionContOscuro" class="opcionContorno ingresoEtiqueta">OSCURO</button>
                             </div>
                         </div>
                         <div id="formatoEspaciado" class="contenIngreso">
                             <label class="subtitulo" for="elecEspaciado">ESPACIADO</label>
-                            <input id="elecEspaciado" type="number" name="elecEspaciado" min="10" max="40" step="1"
+                            <input id="elecEspaciado" type="number" name="elecEspaciado" min="10" max="35" step="1"
                                 value="10">
                         </div>
                         <div class="contenIngreso">
@@ -273,7 +269,7 @@
     </main>
     <footer>
         <div class="botonDescarga" tabindex="0">
-            <button class="botonFinal">Descargar meme</button>
+            <button id="descargaBoton"    class="descargaBoton">Descargar meme</button>
         </div>
     </footer>
     <script src="./script.js"></script>
