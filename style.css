@@ -8,17 +8,15 @@ body.modoOscuro {
   --color-ingresosHover: #6a6962;
   --color-fondoInputRange: #92958f;
   --color-bordeInputRange: 1px solid #ecf3e9;
-  
-  --color-fomatoBotonInputRange: radial-gradient(circle at center,#cce9c3, #393b39);
+  --color-fomatoBotonInputRange: radial-gradient(circle at center, #cce9c3, #393b39);
   --color-inputRangeHover: #78766e;
   --color-bordeBoton: 1.5px solid #9ea2a7;
   --color-texto: #ffffff;
- 
   --border-radius: 3px;
 }
 
 body.modoClaro {
-  --color-nav: linear-gradient(to bottom, #a3a37a 0%, #ffffff 90%, #a3a37a 100%); 
+  --color-nav: linear-gradient(to bottom, #a3a37a 0%, #ffffff 90%, #a3a37a 100%);
   --color-ul: #8ca17e;
   --color-fondoBody: linear-gradient(to bottom, #ffffff 0%, #ffffff 20%, #a3a37a 100%);
   --color-panel: #e5e2ce;
@@ -26,15 +24,12 @@ body.modoClaro {
   --color-ingresosHover: #aaa899;
   --color-inputActiveFondo: #bfc2bc;
   --color-bordeInputRange: 1px solid #0c0e0b;
-   --color-fomatoBotonInputRange: radial-gradient(circle at center, #cce9c3, #000000);
+  --color-fomatoBotonInputRange: radial-gradient(circle at center, #cce9c3, #000000);
   --color-inputRangeHover: #aaa899;
   --color-bordeBoton: 1.5px solid #18191a;
-
   --color-texto: #0c0b0b;
   --color-title-panel: rgb(33 33 33 / 80%);
   --color-title-control: rgb(33 33 33 / 70%);
-
-
   --border-radius: 3px;
 }
 
@@ -47,56 +42,34 @@ body.modoClaro {
 
 body {
   height: 100vh;
-  /* width: 100vw; */
   min-width: 240px;
   font-family: 'Roboto', sans-serif;
-  /* background-color: rgb(160, 175, 195); */
   position: relative;
   background: var(--color-fondoBody);
-  /* background: linear-gradient(to bottom, white 0%, #ffffff 20%, #a3a37a 100%); */
 }
-
-
-
-/* 
-.oscuro body {
-  background-color: #15131a;
-} */
 
 /* Estilos del nav (Encabezado con opciones) */
 nav {
   background: var(--color-nav);
   display: flex;
   flex-direction: column;
-  height: 90px;
+  height: 104px;
   width: 100%;
-  margin-bottom: 5px;
-  
-  /* position: relative; */
 }
-/* 
-.oscuro nav {
-  background-color: rgb(9, 7, 41);
-} */
 
 h1 {
   color: var(--color-texto);
-        /* font-size: 18px; */
-        font-size: 120%;
-        margin-top: 15px;
-        margin-bottom: 6px;
-        /* text-shadow: 0px 0px 5px #142219; */
-        text-align: center;
-        /* margin-top: 25px; */
+  font-size: 120%;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  text-align: center;
 }
 
 ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 15px;
   gap: 6%;
-  /* display: flex; */
   list-style-type: none;
   font-size: 20%;
   text-align: center;
@@ -105,17 +78,20 @@ ul {
   box-shadow: 0px 1px 8px 0.1px #1c1a1a;
 
 }
-li:hover{
+
+li:hover {
   transform: scale(1.15);
 }
+
 /* a{
     pointer-events: visible;
   } */
 /* Borrar todos los estilos a button */
 button {
-    all: unset;
-    cursor: pointer;
+  all: unset;
+  cursor: pointer;
 }
+
 .opcion button {
   background-color: transparent;
   border: none;
@@ -132,7 +108,7 @@ button:active {
   box-shadow: 0px 0px 6px 1px #210f28;
   /* border: 2px solid blue; */
   /* pointer-events: auto; */
-  
+
 }
 
 .contornoBoton {
@@ -144,30 +120,24 @@ button:active {
   margin-inline: 5px;
   font-size: 16px;
 }
-p, i{
+
+p,
+i {
   color: var(--color-texto);
 }
+
 .contenedor {
-  /* width:600px; */
   width: 100%;
   margin-block: 15px;
   margin-inline: auto;
-  /* background: radial-gradient(circle, #ffeb3b, #ff9800); */
-
+  padding-inline: 4%;
 }
 
 
 .tarjeta {
-     /* display: grid; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    width: 90%;
-    margin-inline: auto;
-    /* height: 70%; */
-    box-shadow: 0px 0px 5px 0px black;
-    /* background-color: rgb(248, 244, 244); */
-    /* grid-template-rows: 10% 10% 10%; */
-    /* height: 100vh; */
+  width: 100%;
+  box-shadow: 0px 0px 9px 0px black;
+  position: relative;
 }
 
 .franja {
@@ -175,16 +145,23 @@ p, i{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-inline: 10px;
+  white-space: nowrap;   /* Evita que el texto se divida en varias líneas */
+  overflow: hidden !important;   /* Oculta cualquier contenido que desborde el contenedor */
 }
 
 .franja h2 {
-  font-size: auto;
   font-size: 36px;
+  line-height: 1;
   color: black;
+  padding-block: 5px;
+  text-overflow: ellipsis;   /* Muestra un elipsis (...) cuando el texto desborda */
+  overflow: hidden;   /* Oculta cualquier contenido que desborde el h2 */
 }
 
 #franja1 {
-  height: 12vh;
+  /* height: 68px; */
+  padding-block: 15px;
   /* background-color: #ffcc00; */
   /* background: linear-gradient(to bottom, #a3a37a 0%, #FFFFFF 90%, #a3a37a 100%); */
   background: linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 9%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 93%, rgb(118, 97, 97) 100%);
@@ -194,9 +171,20 @@ p, i{
 }
 
 #franja2 {
-  height: 47vh;
+  height: 49vh;
   object-fit: contain;
   background: radial-gradient(circle, #fcfbf2, #bebc99);
+}
+
+#franja2Aux{
+  height: 72vh;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+
 }
 
 img {
@@ -207,9 +195,9 @@ img {
 }
 
 .franja-3 {
-  height: 12vh;
-
   background: linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%);
+  padding-block: 15px;
+  /* height: 68px; */
   /* background-color: #99ff99; */
   /* Color de la tercera franja */
 }
@@ -217,7 +205,7 @@ img {
 /* Sección ImagenFondo - Inicio */
 #imagenMonigote {
   position: absolute;
-  top: 260px; 
+  top: 260px;
   left: -412px;
   /* top:0px; */
   /* left:0px; */
@@ -225,7 +213,7 @@ img {
 
 /* Sección ImagenFondo - Final */
 /* Formato Paneles de imagen y texto - Inicio */
-#panel{
+#panel {
   height: 99.95vh;
   width: 240px;
   position: absolute;
@@ -264,24 +252,24 @@ img {
 
 
 #cierrePanel {
-       /* appearance: none; */
-    /* display: none; */
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    /* border: 1px solid black; */
-    /* background-color: #15131a00; */
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-weight: 800;
-    width: 15px;
-    height: 15px;
-    padding: 3px;
-    margin: 5px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 5;
+  /* appearance: none; */
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* border: 1px solid black; */
+  /* background-color: #15131a00; */
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 800;
+  width: 15px;
+  height: 15px;
+  padding: 3px;
+  margin: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
 }
 
 .tituloPanel {
@@ -301,8 +289,8 @@ img {
   text-shadow: 0px 0px 1px #101010;
 }
 
-.panelInterior{
-  margin-top:18px;
+.panelInterior {
+  margin-top: 18px;
 }
 
 /* .panelImagenInterior:first-child{
@@ -318,17 +306,22 @@ img {
   margin: 0px;
 } */
 
-label, ::placeholder, button{
+label,
+::placeholder,
+button {
   color: var(--color-texto);
 
 }
 
 /* , .alineacion */
-.contenIngreso input, .contenIngreso select, .contenIngresoIm input, .contenIngresoIm select {
+.contenIngreso input,
+.contenIngreso select,
+.contenIngresoIm input,
+.contenIngresoIm select {
   /* appearance: none; */
   background: var(--color-ingresos);
   color: var(--color-texto);
-   /* #cfcdb8; */
+  /* #cfcdb8; */
   outline: 0;
   border: 0;
   border-radius: var(--border-radius);
@@ -347,21 +340,46 @@ label, ::placeholder, button{
   /* justify-content: center; */
   /* align-items: center; */
   padding: 10px;
-     
+
 }
-.ingresoEtiqueta{
-  height:30px;
+
+.ingresoEtiqueta {
+  height: 30px;
   background-color: var(--color-ingresos);
   border-radius: var(--border-radius);
   font-size: 10px;
-  padding-left:7px;
-  display:flex;
+  padding-left: 7px;
+  display: flex;
   /* justify-content: center; */
   align-items: center;
 }
 
+input:-internal-autofill-selected {
+  background-color: red !important;
+}
 
-#cierrePanel:hover, .descargaBoton:hover, .alineacion:hover, .colorTexto:hover, .fondoTexto:hover, .opcionContorno:hover, .reestablecer:hover{
+input:-webkit-autofill {
+  background-color: violet !important;
+  /* Cambia 'yourColor' al color que desees */
+  color: blue !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: green !important;
+  /* Cambia 'tuColorDeTexto' al color que desees */
+  background-color: red;
+  font-size: 30px;
+}
+
+
+
+#cierrePanel:hover,
+.descargaBoton:hover,
+.alineacion:hover,
+.colorTexto:hover,
+.fondoTexto:hover,
+.opcionContorno:hover,
+.reestablecer:hover {
   text-shadow: 0px 0px 0.5px #363131;
   background-color: var(--color-ingresosHover);
 }
@@ -370,52 +388,57 @@ label, ::placeholder, button{
   appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none; */
-    /* padding: 10px; Ajusta el espaciado según sea necesario */
-    /* text-align-last: center; */
-    /* background-color: #a088a8; */
+/* padding: 10px; Ajusta el espaciado según sea necesario */
+/* text-align-last: center; */
+/* background-color: #a088a8; */
 /* } */
 
 
 /* .........................
 Estilos sólo del panel Texto 
 ............................*/
-.contenIngreso{
-  margin-bottom:20px;
+.contenIngreso {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .tilde {
-         /* list-style: none; */
-    font-size: 0.7rem;
-    display: flex;
-    align-items: center;
-    height: 10px;
-    margin-top: 5px;
-  
-}
-.tilde label{
-  margin-left:7px;
+  /* list-style: none; */
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  height: 10px;
+  margin-top: 5px;
+
 }
 
-input[type="checkbox"], select{
-     /* appearance: none; */
-     background-color: #f4f3e7bd;
-     border: 1.5px solid #18191a;
-     border-radius: 2px;
-     /* padding: 5px; */
-     /* height: 8px; */
+.tilde label {
+  margin-left: 7px;
 }
+
+input[type="checkbox"],
+select {
+  /* appearance: none; */
+  background-color: #f4f3e7bd;
+  border: 1.5px solid #18191a;
+  border-radius: 2px;
+  /* padding: 5px; */
+  /* height: 8px; */
+}
+
 /* ver desde aca */
-#opcionTextoSuperior, #opcionTextoInferior {
-     /* appearance: none; */
-     /* width: 0px; */
-     /* height: 30px; */
-     /* background-color: #f4f3e7bd; */
-     /* border: 1.5px solid #18191a; */
-     /* border-radius: 2px; */
-     /* cursor: pointer; */
-     
-     /* box-shadow: 0px 0px 5px 1.5px black; */
+#opcionTextoSuperior,
+#opcionTextoInferior {
+  /* appearance: none; */
+  /* width: 0px; */
+  /* height: 30px; */
+  /* background-color: #f4f3e7bd; */
+  /* border: 1.5px solid #18191a; */
+  /* border-radius: 2px; */
+  /* cursor: pointer; */
+
+  /* box-shadow: 0px 0px 5px 1.5px black; */
 }
 
 #opcionTextoSuperior input:hover {
@@ -423,7 +446,8 @@ input[type="checkbox"], select{
   /* Color de fondo del elemento que se mueve */
   /* border: 1.5px solid #0a3506; */
 }
-#formatoTexto select{
+
+#formatoTexto select {
   margin-bottom: 3px;
 }
 
@@ -434,13 +458,14 @@ select {
   -moz-appearance: none;
   appearance: none;
   padding-right: 25px;
-  /* background-color: green Fondo verde */ 
+  /* background-color: green Fondo verde */
   /* color: white; Color del texto */
 }
 
 /* Estilo para la flecha personalizada */
 select::after {
-  content: '\25BC'; /* Código Unicode para la flecha hacia abajo */
+  content: '\25BC';
+  /* Código Unicode para la flecha hacia abajo */
   /* position: absolute; */
   /* top: 50%; */
   /* right: 10px; */
@@ -448,8 +473,9 @@ select::after {
 }
 
 /* Estilo cuando el select está en estado de hover */
-select:hover, input:hover{
-  background-color: var(--color-ingresosHover); 
+select:hover,
+input:hover {
+  background-color: var(--color-ingresosHover);
   /* transform: translateY(-50%); */
 }
 
@@ -459,15 +485,16 @@ select:hover, input:hover{
 
 
 
-#tamanioFuenteAlinea{
-  display:grid;
+#tamanioFuenteAlinea {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3px;
   /* flex-direction:row; */
   /* width: 100%; */
 }
-#alineacion{
-  
+
+#alineacion {
+
   /* outline: 0; */
   /* border:0; */
   border-radius: var(--border-radius);
@@ -481,35 +508,37 @@ select:hover, input:hover{
   /* -webkit-appearance: none; */
   /* -moz-appearance: none; */
   /* padding: 10px;  */
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 3px;
-  margin-bottom:3px
+  margin-bottom: 3px
 }
+
 .alineacion {
   /* width:50%; */
-  height:30px;
+  height: 30px;
   border-radius: var(--border-radius);
   background: var(--color-ingresos);
   text-align: center;
 }
-.iconoAlineacion{
- 
-  margin:0px;
-  padding:0px;
-  
+
+.iconoAlineacion {
+
+  margin: 0px;
+  padding: 0px;
+
   /* height:15px; */
 }
 
 /* Estilo de Color y Fondo del texto */
-.contenIngresoColorYFondo{
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
+.contenIngresoColorYFondo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 10px;
- 
+
 }
 
-input[type="color"]{
+input[type="color"] {
   appearance: auto;
   width: 20px;
   /* height: 30px; */
@@ -520,87 +549,64 @@ input[type="color"]{
   /* -webkit-writing-mode: none; */
   margin-top: 3px;
 }
-input[type="color"]::-webkit-color-swatch {   /* Para que el input color quede redondo */
+
+input[type="color"]::-webkit-color-swatch {
+  /* Para que el input color quede redondo */
   /* border: 2px solid #4CAF50; */
   border-radius: 50%;
-  height:15px;
-  width:15px;
-  /* margin-bottom:5px;  */
+  height: 15px;
+  width: 20px;
 }
 
-.formatoBotonesContorno{
+.formatoBotonesContorno {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 3px;
 }
 
-.opcionContorno{
-  padding:0px;
-  display:flex;
+.opcionContorno {
+  padding: 0px;
+  display: flex;
   justify-content: center;
-  
 }
 
 
-
-/* ver hasta aca */
 /*..........................
 Estilos sólo del panel Imgen 
 ............................*/
 
-/* .tilde{
-  display:
-} */
-.contenIngresoIm{
+.contenIngresoIm {
   margin-bottom: 18px;
   display: flex;
   flex-direction: column;
 }
-.contenFondo{
+
+.contenFondo {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 5px;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* margin-bottom: 8px; */
-} 
-.otrasOpcionesImagen{
-  width:100%;
 }
+
+.otrasOpcionesImagen {
+  width: 100%;
+}
+
 .filtroRango {
   display: flex;
   margin-block: 4px;
-  /* font-weight: 700; */
   color: var(--color-texto);
-  /* color: #1d1c1e; */
   text-shadow: 0px 0px 0.5px #101010;
   font-family: Roboto;
   font-weight: 400;
   font-size: 13px;
-
 }
-
-/* 
-.panelImagenInterior:second-child {
-  margin-top: 5px;
-} */
-
-/* 
-sección paneles - Formato de inputs */
-/* input [type="number"] {
-  -moz-appearance: textfield;
-} */
-
 
 /* Formato input de imagen */
 .contenIngresoImFilt {
   display: flex;
   flex-direction: column;
   margin-bottom: 12px;
-  /* height: 10px; */
 }
-
-
 
 .contenIngresoImFilt input {
   appearance: none;
@@ -609,104 +615,64 @@ sección paneles - Formato de inputs */
   border-radius: var(--border-radius);
   border-style: none;
   outline: none;
-
-
 }
 
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  width: 15px;
-  /* Ancho del elemento que se mueve */
-  height: 15px;
-  /* Altura del elemento que se mueve */
-  /* background-color: #a088a8; */
+  width: 15px;   /* Ancho del elemento que se mueve */
+  height: 15px;   /* Altura del elemento que se mueve */
   background: var(--color-fomatoBotonInputRange);
-  /* Color de fondo del elemento que se mueve */
   border: var(--color-bordeBoton);
-  /* Borde del elemento que se mueve */
   border-radius: 50%;
-  /* Bordes redondeados */
   cursor: pointer;
-  /* Cambia el cursor al pasar sobre el elemento que se mueve */
-  /* box-shadow: 0px 0px 5px 1.5px black; */
 }
+
 input[type="range"] {
   background-color: var(--color-ingresos);
-  height:5px;
+  height: 5px;
 }
+
 input[type="range"]:hover {
   background-color: var(--color-ingresosHover);
 }
 
 input[type="range"]:focus {
   background-color: grey;
-   /* var(--color-fondoInputRange); */
-  /* Color de fondo del elemento que se mueve */
   border: var(--color-bordeInputRange);
-  /* box-shadow: var(--color-sombraInputRangeActive); */
 }
 
-.contenReestablecer{
-  margin-top:25px
+.contenReestablecer {
+  margin-top: 25px
 }
 
-#botonReestablecer{
+#botonReestablecer {
   padding-inline: 17px;
   font-size: 14px;
   color: var(--color-texto);
   text-shadow: 0px 0px 1px #101010;
-  
-  
 }
-/* Sección PanelImagen - Inicio */
 
-
-
-/* Sección PanelImagen - Final */
-
-/* Sección PanelTexto - Inicio */
-
-
-/* Sección PanelTexto - Final */
-
+/* Footer */
 footer {
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 15px;
 }
 
-/* button { */
-  /* background: linear-gradient(to bottom, rgb(140, 161, 126) 0%, rgb(140, 161, 126) 100%); */
-  /* background-color: #2d492d; */
-  /* border: 1px solid grey; */
-  /* outline: none; */
-  /* color: #000000; */
-  /* font-size: 16px; */
- 
-  /* cursor: pointer; */
- 
-/* } */
-
-.descargaBoton{
+.descargaBoton {
   border: 1px solid grey;
   outline: none;
   color: #000000;
   font-size: 16px;
   font-weight: 800;
-  
   border-radius: var(--border-radius);
   padding: 7px;
   background: linear-gradient(to bottom, rgb(140, 161, 126) 0%, rgb(90, 104, 81) 90%);
-    box-shadow: 0px 1px 8px 0.1px #1c1a1a;
+  box-shadow: 0px 1px 8px 0.1px #1c1a1a;
 }
 
-.descargaBoton:hover{
-  /* background: linear-gradient(to bottom, rgb(140, 161, 126) 0%, (#FFFFFF) 50%, rgb(90, 104, 81) 90%); */
+.descargaBoton:hover {
   background: linear-gradient(to bottom, rgb(90, 104, 81) 0%, rgb(140, 161, 126) 90%)
 }
 
-/* ................................................... */
-/* Estilos modo oscuro / modo claro */
-.colorInteractivoClaro{
-
-}

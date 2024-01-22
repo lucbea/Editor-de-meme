@@ -35,14 +35,12 @@ window.addEventListener('resize', function () {
             $cierrePanel.style.display = "flex";
             $panel.style.display = ('block');
         }
-        else { 
+        else {
             $panelImagen.style.display = "none";
             $panel.style.display = 'none';
         }
     }
 })
-
-
 
 // ...............................................
 // .. Muestra panel de imagen con o sin boton X ..
@@ -50,7 +48,7 @@ $botonImagen.addEventListener('click', (event) => {
     $panelImagen.style.display = "block";
     $panel.style.display = "block";
     $panelTexto.style.display = "none";
-    
+
     // Llama a la función para obtener el tamaño de la pantalla y mostrar o no el botón X
     tamanioVentana = preguntaTamanioVentana();
     // Pregunta si el boton cierre esta display o none en función del tamaño de la ventana
@@ -65,7 +63,7 @@ $botonTexto.addEventListener('click', (event) => {
     $panel.style.display = "block";
     $panelImagen.style.display = "none";
     tamanioVentana = preguntaTamanioVentana(); // Llama a la función para obtener el tamaño de la pantalla y muestra o no el botón X
-    
+
     // Pregunta si el boton cierre esta display o none en función del tamaño de la ventana
     if (tamanioVentana > 1299) { $cierrePanel.style.display = "none" }
     else { $cierrePanel.style.display = "flex"; }
@@ -78,7 +76,6 @@ $cierrePanel.addEventListener('click', (event) => cierre())
 // ...............................
 // .. Función cierre de paneles ..
 let cierre = () => {
-    console.log('apretaste cierre');
     $panelTexto.style.display = "none";
     $panelImagen.style.display = "none";
     $cierrePanel.style.display = "none";
@@ -95,7 +92,6 @@ let cierre = () => {
 // ...................................................
 // .. Inicialización de variables para Panel Imagen ..
 let $ingresoURL = document.getElementById('ingresoURL'); // id de la URL que se ingresa 
-
 let $tarjeta = document.getElementById('tarjeta');  // para recuperar el contenedor de imagen y texto
 let $franja1 = document.getElementById('franja1'); // div donde esta el texto superior
 let $franja2 = document.getElementById('franja2');   // franja2 es el id del contenedor de la imagen que se insertará desde java
@@ -125,7 +121,6 @@ let $negativo = 0;    // valor inicial de las variables para aplicar estilo a la
 // ...............................................................................
 // .. Funcion para iniciar los botones de los input range al colocar una imagen ..
 let iniciarFiltros = () => {
-    console.log('iniciando los botones de losinput range');
     $brilloF.value = 1;     // reinicio del boton del input range
     $opacidadF.value = 1;    // reinicio del boton del input range
     $desenfoqueF.value = 0;      // reinicio del boton del input range
@@ -139,8 +134,9 @@ let iniciarFiltros = () => {
 
 // ...........................................
 // .. Funcion para reestablecer los filtros ..
+let bandera = false;
+let guardoMarcaFiltros;
 let reestablecer = () => {
-    console.log('estoy reestableciendo filtros');
     $brillo = $brilloF.max;      // valor por defecto para la imagen
     $opacidad = $opacidadF.max;    // valor por defecto para la imagen
     $contraste = $contrasteF.min;    // valor por defecto para la imagen
@@ -153,23 +149,76 @@ let reestablecer = () => {
     iniciarFiltros();
     // ............................................
     // aplico los valores de los distintos estilos a la imagen
-    if ($img) {
-        $img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
-        console.log('filtros reestablecidos', $brillo, $opacidad, $contraste, $desenfoque, $escalaGris, 'etc');
-    }
+    $img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
+    guardoMarcaFiltros = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
+    bandera = false;
 }
 
 // ...........................................
 // .. Captura de URL, ingreso de imagen al HTML e inserción de imagen en variable general $img 
+let cargarImagen = () => {
+    if ($ingresoURL.value) {
+        $img = document.getElementById('img'); // guardo la información de la imagen en variable general $img
+        if (!$opcionFondoTransparente.checked) {
+            $franja2.innerHTML = '';
+            $franja2Aux.innerHTML = '';
+            $franja2.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
+            $img = document.getElementById('img'); // guardo la información de la imagen en variable general $img
+            if (bandera) {
+                $img.style.filter = guardoMarcaFiltros;
+            } 
+        }
+        else {
+            $franja2.innerHTML = '';
+            $franja2Aux.innerHTML = '';
+            $franja2Aux.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
+            $img = document.getElementById('img'); // guardo la información de la imagen en variable general $img
+            if (bandera) {
+                $img.style.filter = guardoMarcaFiltros;
+            }
+        }
+    }
+}
+
+let $franja2Aux = document.getElementById('franja2Aux');
 $ingresoURL.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
-        $franja2.innerHTML = `<img id="img" src=" " alt="imagen ingresada por URL">`;// borro por si hay una imagen ya insertada
-        $franja2.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
         iniciarFiltros();  // al ingresar nueva imagen inicia los botones de los input range
-        $img = document.getElementById('img'); // guardo la información de la imagen en variable general $img
+        cargarImagen();
     }
 })
+
+
+
+// ...........................................
+// Modificación del color del fondo del panel Imagen
+let $colorFondo = document.getElementById('colorFondo');  // para recuperar el valor del input type color  del fondo del texto
+let $labelColorFondo = document.querySelector('label[for="colorFondo"]');   // para interactuar con el label del input colorTexto del fondo del texto
+let $fondoTextoImg = document.getElementById('fondoTextoImg');
+
+$colorFondo.addEventListener('input', function () { 
+    $labelColorFondo.textContent = $colorFondo.value; });
+
+// .........................................
+// .. Aplicar el color de fondo elegido
+// let aplicarColorDeFondo = () => {
+//     if (!$opcionFondoTransparente.checked) {
+//         $franja1.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
+//         $franja3.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
+//         $franja2.style.background = `radial-gradient(circle, #fcfbf2, ${$colorFondoTex.value})`;
+//     }
+    
+
+
+
+
+
+
+
+
+
+
 
 
 // ...................................................
@@ -231,10 +280,12 @@ $negativoF.addEventListener('input', function () {
 
 // ......................................
 // .. Función que recibe el valor de los input range para modificar la imagen 
+
 let modificarImagen = () => {
-    if ($img) {
-        $img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
-    }
+    if (!bandera) {bandera = 1;}
+    $img = document.getElementById('img');
+    guardoMarcaFiltros = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
+    $img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
 }
 
 
@@ -263,7 +314,7 @@ $ingresoTextoSuperior.addEventListener('keydown', (event) => {
         event.preventDefault();
         let textoIngresado = $ingresoTextoSuperior.value;
         completarTexto($ingresoTextoSuperior, textoIngresado);
-        $ingresoTextoSuperior.value = "";
+        revisarTextosYFranjas();
     }
 });
 
@@ -275,9 +326,10 @@ let $ingresoTextoInferior = document.getElementById('ingresoTextoInferior');
 
 $ingresoTextoInferior.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-        event.preventDefault();         
+        event.preventDefault();
         let textoIngresado = $ingresoTextoInferior.value;
         completarTexto($ingresoTextoInferior, textoIngresado);
+        revisarTextosYFranjas();
     }
 });
 
@@ -301,57 +353,118 @@ let $sinTextoSuperior = document.getElementById('sinTextoSuperior');
 //...................................
 //..  Check en  Sin texto superior ..
 $sinTextoSuperior.addEventListener('input', () => {
-    revisarSiMuestroTextos ();
+    revisarTextosYFranjas();
 })
 
 // .................................
 // .. Check en Sin texto inferior ..
 $sinTextoInferior.addEventListener('input', () => {
-    revisarSiMuestroTextos ();
+    revisarTextosYFranjas();
 })
 
 // ......................................................
-// .. Función que adapta los div segun los input check ..
-let revisarSiMuestroTextos = () => {
-    console.log('estoy en funcion revisarSiMuestroTextos', $sinTextoInferior.checked, $sinTextoSuperior.checked);
+// .. Función que adapta los div segun los input check
+let revisarTextosYFranjas = () => {
     switch (true) {
-        case ($sinTextoInferior.checked && $sinTextoSuperior.checked):  modificarEspacioFranjas('none', 'none', '71vh');          
+        case ($sinTextoInferior.checked && $sinTextoSuperior.checked):
+            modificarEspacioFranjas('none', 'sinTexto', 'none');
             break;
         case ($sinTextoInferior.checked && !$sinTextoSuperior.checked):
-            modificarEspacioFranjas('flex', 'none', '59vh');
+            modificarEspacioFranjas('flex', 'textoSup', 'none');
             break;
-        case (!$sinTextoInferior.checked && $sinTextoSuperior.checked): modificarEspacioFranjas('none', 'flex', '59vh');
+        case (!$sinTextoInferior.checked && $sinTextoSuperior.checked):
+            modificarEspacioFranjas('none', 'textoInf', 'flex');
             break;
-        case (!$sinTextoInferior.checked && !$sinTextoSuperior.checked): modificarEspacioFranjas('flex', 'flex', '47vh');
+        case (!$sinTextoInferior.checked && !$sinTextoSuperior.checked):
+            modificarEspacioFranjas('flex', 'ambosTextos', 'flex');
             break;
     }
 };
 
+// ..............................
+// .. Calcular espacio franjas ..
+
 // .....................................
-// .. Función que modifica height de las franjas
+// .. Función que modifica height de las franjas segun inputs check, tamaño del texto, interlineado y espaciado ..
+let $body = document.getElementById('body');
 let modificarEspacioFranjas = (fr1, fr2, fr3) => {
+    let altoBody = $body.offsetHeight;
+    const altoFooter = 42;
+    const altoNav = 104;
+    const espacioYaOcupado = altoFooter + altoNav + 30;  // 42 de margin-block y padding por la letra del contenedor
+    let altoFranja = (parseFloat($opcionesInterlineado.value) * parseInt($tamanioFuente.value)) + parseInt($elecEspaciado.value) * 2;
+    let altoContenedorImag = 0; // para calcular el tamaño del contenedor de la imagen
+    switch (true) {
+        case fr2 == 'ambosTextos': 
+            altoContenedorImag = altoBody - (altoFranja * 2) - espacioYaOcupado;
+            $franja1.style.display = fr1;
+            $franja1.style.height = altoFranja + 'px';
+            $franja2.style.height = altoContenedorImag + 'px';
+            $franja3.style.display = fr3;
+            $franja3.style.height = altoFranja + 'px';
+            break;
+        case fr2 == 'textoSup':
+            altoContenedorImag = altoBody - altoFranja - espacioYaOcupado;
+            $franja1.style.display = fr1;
+            $franja1.style.height = altoFranja + 'px';
+            $franja2.style.height = altoContenedorImag + 'px';
+            $franja3.style.display = fr3;
+            break;
+        case fr2 == 'textoInf':
+            altoContenedorImag = altoBody - altoFranja - espacioYaOcupado;
+            $franja1.style.display = fr1;
+            $franja2.style.height = altoContenedorImag + 'px';
+            $franja3.style.display = fr3;
+            $franja3.style.height = altoFranja + 'px';
+            break;
+        case fr2 == 'sinTexto':
+            altoContenedorImag = altoBody - espacioYaOcupado;
+            $franja1.style.display = fr1;
+            $franja2.style.height = altoContenedorImag + 'px';
+            $franja3.style.display = fr3;
+            break;
+        default: break;
+    }
     $franja1.style.display = fr1;
-    $franja3.style.display = fr2;
-    $franja2.style.height =  fr3;
+    $franja2.style.height = fr2;
+    $franja3.style.display = fr3;
 }
+
+// ......................
+// Opcion de espaciado ..
+let $elecEspaciado = document.getElementById('elecEspaciado');
+
+$elecEspaciado.addEventListener('input', () => {
+    $franja1.style.marginBlock = $elecEspaciado.value;
+    $franja3.style.marginBlock = $elecEspaciado.value;
+    revisarTextosYFranjas();
+})
+
+// ............................
+// .. Opcion de interlineado ..
+let $opcionesInterlineado = document.getElementById('opcionesInterlineado');
+let restarAlAlto = 0;
+$opcionesInterlineado.addEventListener('input', () => {
+    $textoArriba.style.lineHeight = $opcionesInterlineado.value;
+    revisarTextosYFranjas();
+});
 
 
 //..........................................
 // .. Modificación de la fuente del texto .. 
 $elecFuente = document.getElementById('elecFuente');
-$elecFuente.addEventListener('input', (event) => {
-    console.log($elecFuente.value);
+$elecFuente.addEventListener('input', () => {
     $textoArriba.style.fontFamily = $elecFuente.value;
     $textoAbajo.style.fontFamily = $elecFuente.value;
-})
+});
 
 //..........................................
 // .. Modificación del tamaño de la fuente del texto .. 
 $tamanioFuente = document.getElementById('tamanioFuente');
-$tamanioFuente.addEventListener('keydown', (event) => {
-    console.log($tamanioFuente.value);
+$tamanioFuente.addEventListener('keydown', () => {
     $textoArriba.style.fontSize = `${$tamanioFuente.value}px`;
     $textoAbajo.style.fontSize = `${$tamanioFuente.value}px`;
+    revisarTextosYFranjas();
 });
 
 // ..........................................
@@ -388,98 +501,106 @@ let $colorTexto = document.getElementById('colorTexto');  // para recuperar el v
 let $labelColorTexto = document.querySelector('label[for="colorTexto"]')  // para interactuar con el label del input colorTexto
 
 $colorTexto.addEventListener('input', function () {
-    console.log($colorTexto.value);
     $textoArriba.style.color = $colorTexto.value;
     $textoAbajo.style.color = $colorTexto.value;
     $labelColorTexto.textContent = $colorTexto.value;
-})
+});
 
 // ...........................................
 // Modificación del color del fondo del texto
 let $colorFondoTex = document.getElementById('colorFondoTex');  // para recuperar el valor del input type color  del fondo del texto
-let $labelColorFondoTex = document.querySelector('label[for="colorFondoTex"]')  // para interactuar con el label del input colorTexto del fondo del texto
-let $fondoTexto = document.getElementById('fondoTexto')
+let $labelColorFondoTex = document.querySelector('label[for="colorFondoTex"]');   // para interactuar con el label del input colorTexto del fondo del texto
+let $fondoTexto = document.getElementById('fondoTexto');
 
-$colorFondoTex.addEventListener('input', function () {
-    console.log($colorFondoTex.value);
-    aplicarColorDeFondo ();   
-})
+$colorFondoTex.addEventListener('input', function () { aplicarColorDeFondo() });
 
 // .........................................
 // .. Aplicar el color de fondo elegido
 let aplicarColorDeFondo = () => {
-    $franja1.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
-    $franja3.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
-    $franja2.style.background = `radial-gradient(circle, #fcfbf2, ${$colorFondoTex.value})`;
-    $labelColorFondoTex.textContent = $colorFondoTex.value;
-
+    if (!$opcionFondoTransparente.checked) {
+        $franja1.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
+        $franja3.style.background = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
+        $franja2.style.background = `radial-gradient(circle, #fcfbf2, ${$colorFondoTex.value})`;
+    }
+    else {
+        $labelColorFondoTex.textContent = $colorFondoTex.value;
+    }
 }
+
 // ...............................................
 // .. Aplicación de check fondo transparente
 let $opcionFondoTransparente = document.getElementById('opcionFondoTransparente');
-$opcionFondoTransparente.addEventListener('input', () => {
-    if ($opcionFondoTransparente.checked){
-        console.log('estoy en transparent')
+$opcionFondoTransparente.addEventListener('input', () => { imagenTodoContenedor() });
+
+let imagenTodoContenedor = () => {
+    if ($opcionFondoTransparente.checked) {
         $franja1.style.background = 'transparent';
+        $franja1.style.zIndex = '4';
         $franja2.style.background = 'transparent';
         $franja3.style.background = 'transparent';
-        if($img) {
-            console.log('hay imagen ingresada', $ingresoURL.value);
-            $img.style.display = 'none';}
-            $tarjeta.style.backgroundImage = `url('${$ingresoURL.value}')`;
-            $tarjeta.style.backgroundSize = 'cover';
-            $tarjeta.style.backgroundRepeat = 'no-repeat';
+        $franja3.style.zIndex = '4';
+        aplicarColorDeFondo();
+        if ($colorFondoTex.value === '#ffffff') {
+            $franja2Aux.style.background = 'radial-gradient(circle, #fcfbf2, #bebc99)';
+        };
+        cargarImagen();
     }
-    else{
+    else {
         $franja1.style.background = '';
         $franja2.style.background = '';
         $franja3.style.background = '';
         aplicarColorDeFondo();
-        console.log($colorFondoTex.value);
         if ($colorFondoTex.value === '#ffffff') {
-            console.log('entre');
             $franja1.style.background = 'linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 9%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 93%, rgb(118, 97, 97) 100%)';
             $franja2.style.background = 'radial-gradient(circle, #fcfbf2, #bebc99)';
             $franja3.style.background = 'linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%)';
-        } else {
-            console.log('no entré');
-        }
-        if ($img) {$img.style.display = 'block'}
-    }
-});
+        };
+        cargarImagen();
+    };
+};
 
 // ....................................
 // .. Botones para contorno de texto ..
 // .. Boton Ninguno ..
+
+// .......................................
+// .. Funcion que aplica contornos
+let obtenerElementoTexto = (lugar) => {
+    return document.getElementById(`texto${lugar}`);
+};
+
+let aplicaContornos = (lugar, grosor, color) => {
+    let ubicacion = obtenerElementoTexto(lugar);      // Para que retorne el lugar del DOM
+    if (grosor !== 0) {
+        ubicacion.style.webkitTextStroke = `${grosor}px ${color}`;  /* Para navegadores WebKit (Safari, Chrome) */
+        ubicacion.style.textStroke = `${grosor}px ${color}`;   /* Estándar */
+        ubicacion.style.textShadow = `${grosor}px  ${grosor}px ${grosor}px ${color}`;
+    } else {
+        ubicacion.style.webkitTextStroke = `${color}`;
+        ubicacion.style.textStroke = `${color}`;
+        ubicacion.style.textShadow = 'none';
+    };
+};
+
 let $opcionContNinguno = document.getElementById('opcionContNinguno');
-$opcionContNinguno.addEventListener('click', (event) =>{
-    $textoArriba.style.webkitTextStroke = 'transparent';  /* Para navegadores WebKit (Safari, Chrome) */
-    $textoArriba.style.textStroke = 'transparent';  /* Estándar */
-    $textoArriba.style.textShadow = 'none';
-    $textoAbajo.style.webkitTextStroke = 'transparent';  /* Para navegadores WebKit (Safari, Chrome) */
-    $textoAbajo.style.textStroke = 'transparent';  /* Estándar */
-    $textoAbajo.style.textShadow = 'none';
-})
+$opcionContNinguno.addEventListener('click', () => {
+    aplicaContornos('Arriba', 0, 'transparent');
+    aplicaContornos('Abajo', 0, 'transparent');
+});
 
 let $opcionContClaro = document.getElementById('opcionContClaro');
-$opcionContClaro.addEventListener('click', (event) =>{
-        $textoArriba.style.webkitTextStroke = '1px white';  /* Para navegadores WebKit (Safari, Chrome) */
-        $textoArriba.style.textStroke = '1px white';  /* Estándar */
-        $textoArriba.style.textShadow = '1px 1px 1px white';
-        $textoAbajo.style.webkitTextStroke = '1px white';  /* Para navegadores WebKit (Safari, Chrome) */
-        $textoAbajo.style.textStroke = '1px white';  /* Estándar */
-        $textoAbajo.style.textShadow = '1px 1px 1px white';
+$opcionContClaro.addEventListener('click', () => {
+    aplicaContornos('Arriba', 1, 'white');
+    aplicaContornos('Abajo', 1, 'white');
 });
 
 let $opcionContOscuro = document.getElementById('opcionContOscuro');
-$opcionContOscuro.addEventListener('click', (event) =>{
-    $textoArriba.style.webkitTextStroke = '1px black';  /* Para navegadores WebKit (Safari, Chrome) */
-    $textoArriba.style.textStroke = '1px black';  /* Estándar */
-    $textoArriba.style.textShadow = '1px 1px 0px black';
-    $textoAbajo.style.webkitTextStroke = '1px black';  /* Para navegadores WebKit (Safari, Chrome) */
-    $textoAbajo.style.textStroke = '1px black';  /* Estándar */
-    $textoAbajo.style.textShadow = '1px 1px 0px black';
+$opcionContOscuro.addEventListener('click', () => {
+    aplicaContornos('Arriba', 1, 'black');
+    aplicaContornos('Abajo', 1, 'black');
 });
+
+
 
 
 // ***********************
@@ -488,26 +609,26 @@ $opcionContOscuro.addEventListener('click', (event) =>{
 // ***********************
 // ***********************
 let $botonModo = document.getElementById('botonModo');
-let $body = document.getElementById('body');
+
 let $nav = document.getElementById('nav');
 let $modoClaOsc = document.getElementById('modoClaOsc'); // Toma el <p> para modificarlo
 
 let banderaModoOscuro = 0;  // Variable para cambiar entre modo claro y modo oscuro
 document.body.classList.add('modoClaro');
-$botonModo.addEventListener ('click', (event) => {
+$botonModo.addEventListener('click', () => {
     banderaModoOscuro = !(banderaModoOscuro);
     if (banderaModoOscuro) {
-        console.log('estoy en modo oscuro');
         document.body.classList.remove('modoClaro');
         document.body.classList.add('modoOscuro');
         $modoClaOsc.textContent = 'MODO CLARO';
     } else {
-        console.log('estoy en modo claro');
         document.body.classList.remove('modoOscuro');
         document.body.classList.add('modoClaro');
         $modoClaOsc.textContent = 'MODO OSCURO';
     }
 })
+
+
 
 // .....................................
 // .. Boton descarga
@@ -515,10 +636,7 @@ $botonModo.addEventListener ('click', (event) => {
 let $descargaBoton = document.getElementById('descargaBoton');
 let $imagen = document.getElementById('tarjeta');
 
-$descargaBoton.addEventListener("click", () => {
-    console.log('voy a descargar el meme')
-    domtoimage.toBlob(document.getElementById("tarjeta")).then((blob) => window.saveAs(blob, "meme.png"));
-});
+$descargaBoton.addEventListener("click", () => domtoimage.toBlob(document.getElementById("tarjeta")).then((blob) => window.saveAs(blob, "meme.png")));
 
 
 

@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="crossorigin="anonymous">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
-        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous"></script>
+
     <title>Editor de Memes</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./media.css">
@@ -64,9 +68,10 @@
                     <div id="franja2" class="franja franja-2">
                         <!-- <img src="" alt=""> -->
                     </div>
-                    <div  id="franja3" class="franja franja-3">
+                    <div id="franja3" class="franja franja-3">
                         <h2 id="textoAbajo">BOTTOM TEXT</h2>
                     </div>
+                    <div id="franja2Aux"></div>
                 </div>
             </div>
         </section>
@@ -84,7 +89,7 @@
                         <div class="contenIngresoIm">
                             <h3 class="subtitulo">FONDO</h3>
                             <div class="contenFondo">
-                                <div class="fondoTexto ingresoEtiqueta">
+                                <div id="fondoTextoImg" class="fondoTexto ingresoEtiqueta">
                                     <input id="colorFondo" tabindex="0" type="color" name="colorFondo" value="#FFFFFF">
                                     <label for="colorFondo">#FFFFFF</label>
                                 </div>
@@ -161,8 +166,8 @@
                                 <input id="ingresoTextoSuperior" tabindex="0" type="text" name="superior"
                                     placeholder="TOP TEXT" required>
                                 <div class="opcion tilde">
-                                    <input type="checkbox" id="sinTextoSuperior" class="opcionTextoSuperior" name="opcionTextoSuperior"
-                                        value="aceptado">
+                                    <input type="checkbox" id="sinTextoSuperior" class="opcionTextoSuperior"
+                                        name="opcionTextoSuperior" value="aceptado">
                                     <label for="sinTextoSuperior">Sin texto superior</label>
                                 </div>
                             </div>
@@ -171,8 +176,8 @@
                                 <input id="ingresoTextoInferior" tabindex="0" type="text" name="inferior"
                                     placeholder="BOTTOM TEXT" required>
                                 <div class="opcion tilde">
-                                    <input type="checkbox" id="sinTextoInferior" class="sinTextoInferior"  name="opcionTextoInferior"
-                                        value="aceptado">
+                                    <input type="checkbox" id="sinTextoInferior" class="sinTextoInferior"
+                                        name="opcionTextoInferior" value="aceptado">
                                     <label for="sinTextoInferior">Sin texto inferior</label>
                                 </div>
                             </div>
@@ -182,15 +187,16 @@
                                     <option value="Arial">ARIAL</option>
                                     <option value="Arial Black">ARIAL BLACK</option>
                                     <option value="American Typewriter">AMERICAN TYPEWRITER</option>
-                                    <option value="Andale Mono">ANDALE MONO</option>
+                                    <option value="Calibri" selected>CALIBRI</option>
                                     <option value="Comic Sans MS">COMIC SANS MS</option>
                                     <option value="Helvetica">HELVETICA</option>
                                     <option value="Impact">IMPACT</option>
-                                    <option value="Verdana" selected>VERDANA</option>
                                     <option value="Times New Roman">TIMES NEW ROMAN</option>
+                                    <option value="Verdana">VERDANA</option>
                                 </select>
                                 <div id="tamanioFuenteAlinea">
-                                    <input id="tamanioFuente" type="number" name="size" min="12" max="161" step="1" value="36">
+                                    <input id="tamanioFuente" type="number" name="size" min="12" max="161" step="1"
+                                        value="36">
                                     <div id="alineacion">
                                         <button id="alineaIzq" class="alineacion">
                                             <i class="fas fa-align-left iconoAlineacion" aria-hidden="true"></i>
@@ -203,7 +209,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div id="ingresoColorYTexto" class="contenIngreso">
                                 <div class="contenIngresoColorYFondo ">
                                     <div>
@@ -216,7 +222,7 @@
                                     </div>
                                     <div>
                                         <h3 class="subtitulo">FONDO</h3>
-                                        <div id="" class="fondoTexto ingresoEtiqueta">
+                                        <div id="fondoTexto" class="fondoTexto ingresoEtiqueta">
                                             <input id="colorFondoTex" tabindex="0" type="color" name="colorFondo"
                                                 value="#FFFFFF">
                                             <label for="colorFondoTex">#FFFFFF</label>
@@ -243,14 +249,14 @@
                         <div id="formatoEspaciado" class="contenIngreso">
                             <label class="subtitulo" for="elecEspaciado">ESPACIADO</label>
                             <input id="elecEspaciado" type="number" name="elecEspaciado" min="10" max="35" step="1"
-                                value="10">
+                                value="15">
                         </div>
                         <div class="contenIngreso">
                             <label class="subtitulo" for="opcionesInterlineado">INTERLINEADO</label>
                             <select id="opcionesInterlineado" class="opciones" name="opciones">
                                 <option value="0.8">0.8</option>
-                                <option value="1">1</option>
-                                <option value="1.2" selected>1.2</option>
+                                <option value="1" selected>1</option>
+                                <option value="1.2">1.2</option>
                                 <option value="1.5">1.5</option>
                                 <option value="2">2</option>
                                 <option value="2.5">2.5</option>
@@ -269,7 +275,7 @@
     </main>
     <footer>
         <div class="botonDescarga" tabindex="0">
-            <button id="descargaBoton"    class="descargaBoton">Descargar meme</button>
+            <button id="descargaBoton" class="descargaBoton">Descargar meme</button>
         </div>
     </footer>
     <script src="./script.js"></script>

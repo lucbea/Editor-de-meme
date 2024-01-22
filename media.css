@@ -1,5 +1,7 @@
-@media (min-width:282px) and (max-width:699px) {
-
+@media (min-width:284px) and (max-width:699px) {
+  /* nav{
+    margin-bottom: 15px;
+  } */
   /* .contenedor{
     
     width:55%;   */
@@ -17,13 +19,18 @@
   li {
     font-size: 0.9rem;
   }
-
+.contenedor{
+  margin-block:15px;
+}
   #panel {
     width: 100%;
   }
 }
 
 @media (min-width:700px) and (max-width:1299px) {
+  /* nav{
+    margin-bottom: 15px;
+  } */
   .contenedor {
     /* width:600px; */
     width: 60%;
@@ -41,10 +48,16 @@
   li p {
     font-size: 0.7rem;
   }
+  .contenedor{
+    margin-block:15px;
+  }
 
 }
 
 @media (min-width:1300px) {
+  /* nav{
+    margin-bottom: 15px;
+  } */
   .contenedor {
     /* width:600px; */
     width: 55%;
@@ -57,6 +70,9 @@
 
   ul {
     background-color: #8ca17e;
+  }
+  .contenedor{
+    margin-block:15px;
   }
 
   #panel {
