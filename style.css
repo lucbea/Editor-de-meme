@@ -136,7 +136,10 @@ i {
 
 .tarjeta {
   width: 100%;
+  height: 71vh;
   box-shadow: 0px 0px 9px 0px black;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -145,7 +148,7 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-inline: 10px;
+  /* padding-inline: 10px; */
   white-space: nowrap;   /* Evita que el texto se divida en varias líneas */
   overflow: hidden !important;   /* Oculta cualquier contenido que desborde el contenedor */
 }
@@ -156,11 +159,12 @@ i {
   color: black;
   padding-block: 5px;
   text-overflow: ellipsis;   /* Muestra un elipsis (...) cuando el texto desborda */
-  overflow: hidden;   /* Oculta cualquier contenido que desborde el h2 */
+  overflow: hidden;  /* Oculta cualquier contenido que desborde el h2*/
+  z-index:5;
 }
 
 #franja1 {
-  /* height: 68px; */
+  height: 66px;
   padding-block: 15px;
   /* background-color: #ffcc00; */
   /* background: linear-gradient(to bottom, #a3a37a 0%, #FFFFFF 90%, #a3a37a 100%); */
@@ -168,18 +172,21 @@ i {
   /* background-color: rgb(140, 161, 126); */
   /* background-color: rgb(161, 126, 126); */
   /* Color de la primera franja */
+  position: absolute;
+  top:0;
+  z-index:4;
 }
 
 #franja2 {
-  height: 49vh;
+  height: 50vh;
   object-fit: contain;
   background: radial-gradient(circle, #fcfbf2, #bebc99);
+  position: relative;
 }
 
 #franja2Aux{
-  height: 72vh;
+  height: 100%;
   width: 100%;
-  background-color: red;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -194,10 +201,14 @@ img {
   /* filter: hue-rotate(90); */
 }
 
-.franja-3 {
+#franja3 {
   background: linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%);
   padding-block: 15px;
-  /* height: 68px; */
+  height: 66px;
+  position: absolute;
+  bottom:0;
+  z-index:4;
+
   /* background-color: #99ff99; */
   /* Color de la tercera franja */
 }
@@ -222,6 +233,7 @@ img {
   background-color: var(--color-panel);
   padding: 25px 20px 15px;
   box-shadow: 0px 0px 5px 0px #526534;
+  z-index:10;
 }
 
 #panelImagen {
@@ -355,20 +367,15 @@ button {
 }
 
 input:-internal-autofill-selected {
-  background-color: red !important;
+  background-color: rgb(170, 203, 22) !important;
 }
 
-input:-webkit-autofill {
-  background-color: violet !important;
-  /* Cambia 'yourColor' al color que desees */
-  color: blue !important;
-}
 
 input:-webkit-autofill {
   -webkit-text-fill-color: green !important;
   /* Cambia 'tuColorDeTexto' al color que desees */
-  background-color: red;
-  font-size: 30px;
+  background-color: red !important;
+ 
 }
 
 
