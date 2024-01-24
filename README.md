@@ -12,13 +12,13 @@ ___
 
 ## Breve descripción del proyecto "Generador de Meme"
 ---
-[MEME](#ejemplo)
+[MEME](#meme)
 ---
 [Responsive](#diseño-responsive)
 ---
-[Modos claro y oscuro](#modo-claro-y-modo-oscuro)
+[Apariencias] (#modo-claro-y-modo-oscuro)
 ---
-[Paneles de Texto e Imagen](#paneles-de-texto-e-imagen-1)
+[Paneles de "Texto" e "Imagen".](#paneles-de-texto-e-imagen)
 ---
 ---
 ___
@@ -48,10 +48,9 @@ ___
 [Explora mi proyecto en tu navegador](https://lucbea.github.io/Editor-de-meme/) ... 
 ### Espero que lo disfrutes, como lo hice yo cuando lo programé
 ---
-
 ---
 ### ***Imágenes de mi proyecto***
-#### Ejemplo
+#### Meme
 ![img1.png](ImgReadme/img1.png)
 ---
 [Volver](#breve-descripción-del-proyecto-generador-de-meme)

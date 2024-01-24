@@ -117,14 +117,10 @@ let $negativo = 0;    // valor inicial de las variables para aplicar estilo a la
 
 
 $ingresoURL.addEventListener('input', (event) => {
-    // if (event.key === 'Enter') {
-        event.preventDefault();
-        // alert('reestablecer luego');
-        cargarImagen();
-        reestablecer();  // al ingresar nueva imagen inicia los botones de los input range
-        iniciarBlendMode(); //al ingresar URL inicia opciones de blend mode
-        
-    // }
+    event.preventDefault();
+    cargarImagen();
+    reestablecer();  // al ingresar nueva imagen inicia los botones de los input range
+    iniciarBlendMode(); //al ingresar URL inicia opciones de blend mode
 })
 
 // ...........................................
@@ -139,7 +135,6 @@ let reestablecer = () => {
     $hue = $hueF.min;    // valor por defecto para la imagen
     $saturado = $saturadoF.min;    // valor por defecto para la imagen
     $negativo = $negativoF.min;    // valor por defecto para la imagen
-    // alert('iniciarFiltros luego');
     iniciarFiltros();
 }
 
@@ -155,7 +150,6 @@ let iniciarFiltros = () => {
     $hueF.value = 0;    // reinicio del boton del input range
     $saturadoF.value = 100;    // reinicio del boton del input range
     $negativoF.value = 0;   // reinicio del boton del input range
-    // alert('modificarImagen luego');
     modificarImagen();
 }
 
@@ -168,12 +162,17 @@ let iniciarBlendMode = () => {
 
 // ...........................................
 // .. Captura de URL, ingreso de imagen al HTML e inserción de imagen en variable general $img 
-// let $franja = document.getElementsByClassName('.franja');
 let cargarImagen = () => {
     if ($ingresoURL.value) {
         $franja2.innerHTML = '';
         $franja2.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
         $img = document.getElementById('img'); // guardo la información de la imagen en variable general $img
+        $img.onload = function () {   //  Conocer si la imagen se cargó correctamente
+            $franja2.style.height = '50vh + 30px';
+        };
+        $img.onerror = function () {    // Conocer si hubo error en la carga de la imagen
+            $franja2.style.height = '0px';
+        };
         revisarTextosYFranjas();
     }
 }
@@ -185,7 +184,6 @@ let $labelColorFondo = document.querySelector('label[for="colorFondo"]');   // p
 let $fondoTextoImg = document.getElementById('fondoTextoImg');
 $colorFondo.addEventListener('input', function () {
     $labelColorFondo.textContent = ($colorFondo.value).toUpperCase()
-    aplicarBlendMode();
 });
 
 //..................................................
@@ -193,9 +191,8 @@ $colorFondo.addEventListener('input', function () {
 $otrasOpcionesImagen = document.getElementById('otrasOpcionesImagen');
 $otrasOpcionesImagen.addEventListener('input', () => {
     if ($ingresoURL.value) {
-        console.log('hay URL ingresada', $ingresoURL, $ingresoURL.value);
         // Si hay URL ingresada, solicita el blend mode y lo aplica
-        aplicarBlendMode($otrasOpcionesImagen);
+        aplicarBlendMode($otrasOpcionesImagen.value);
     }
     else {
         // Si no hay URL ingresada, establecer el blend mode a "unset" (ninguno)
@@ -209,12 +206,15 @@ $otrasOpcionesImagen.addEventListener('input', () => {
 // .......................................
 // Aplicar Blend-Mode
 let aplicarBlendMode = (estiloBlend) => {
+    console.log(estiloBlend);
     if ($ingresoURL.value) {
+        $franja2.style.height = '50vh + 40px';
         $franja2.style.background = $colorFondo.value;
-        // Aplico blend a la imagen con color de fondo 
-        $img.style.mixBlendMode = estiloBlend.value;
-        if (estiloBlend.value === 'unset') {
-            console.log('es unset')
+        // Aplico blend a la imagen (si existe) con color de fondo 
+        if ($img.onload = function () { }) {
+            $img.style.mixBlendMode = estiloBlend; 
+        }
+        if (estiloBlend === 'unset') { // si la opción es ninguno, reestablece valores
             $colorFondo.value = '#FFFFFF'; // Cambia al color original
             $labelColorFondo.textContent = '#FFFFFF';
         }
@@ -281,9 +281,7 @@ $negativoF.addEventListener('input', function () {
 // ......................................
 // .. Función que recibe el valor de los input range para modificar la imagen 
 let modificarImagen = () => {
-    // alert('img luego');
     if ($img) {
-        console.log($img, $img.value);
         $img = document.getElementById('img');
         $img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
     }
@@ -308,13 +306,11 @@ $botonReestablecer.addEventListener('click', (event) => {
 //.. Ingreso del texto superior ..
 let $textoArriba = document.getElementById('textoArriba');
 let $ingresoTextoSuperior = document.getElementById('ingresoTextoSuperior');
-$ingresoTextoSuperior.addEventListener('change', (event) => {
-    // if (event.key === 'Enter') {
+$ingresoTextoSuperior.addEventListener('input', (event) => {
     event.preventDefault();
     let textoIngresado = $ingresoTextoSuperior.value;
     completarTexto($ingresoTextoSuperior, textoIngresado);
     revisarTextosYFranjas();
-    // }
 });
 
 
@@ -322,14 +318,11 @@ $ingresoTextoSuperior.addEventListener('change', (event) => {
 // .. Ingreso del texto inferior ..
 let $textoAbajo = document.getElementById('textoAbajo');
 let $ingresoTextoInferior = document.getElementById('ingresoTextoInferior');
-
-$ingresoTextoInferior.addEventListener('change', (event) => {
-    // if (event.key === 'Enter') {
+$ingresoTextoInferior.addEventListener('input', (event) => {
     event.preventDefault();
     let textoIngresado = $ingresoTextoInferior.value;
     completarTexto($ingresoTextoInferior, textoIngresado);
     revisarTextosYFranjas();
-    // }
 });
 
 
@@ -365,7 +358,6 @@ $sinTextoInferior.addEventListener('input', () => {
 // .. Función que adapta los div segun los input check
 let revisarTextosYFranjas = () => {
     if (!($opcionFondoTransparente.checked)) {
-        console.log('sin texto transparente');
         switch (true) {
             case ($sinTextoInferior.checked && $sinTextoSuperior.checked):
                 modificarEspacioFranjas('none', 'sinTexto', 'none');
@@ -377,13 +369,11 @@ let revisarTextosYFranjas = () => {
                 modificarEspacioFranjas('none', 'textoInf', 'flex');
                 break;
             case (!$sinTextoInferior.checked && !$sinTextoSuperior.checked):
-                console.log('ambos textos')
                 modificarEspacioFranjas('flex', 'ambosTextos', 'flex');
                 break;
         }
     }
     else {
-        console.log('con texto transparente');
         switch (true) {
             case ($sinTextoInferior.checked && $sinTextoSuperior.checked):
                 modificarEspacioFranjas('none', 'sinTexto', 'none');
@@ -404,7 +394,6 @@ let revisarTextosYFranjas = () => {
 
 // ..............................
 // .. Calcular espacio franjas ..
-
 // .....................................
 // .. Función que modifica height de las franjas segun inputs check, tamaño del texto, interlineado y espaciado ..
 let $body = document.getElementById('body');
@@ -417,7 +406,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
     let altoFranja = (parseFloat($opcionesInterlineado.value) * parseInt($tamanioFuente.value)) + parseInt($elecEspaciado.value) * 2;
     let altoContenedorImag = 0; // para calcular el tamaño del contenedor de la imagen
     if ($opcionFondoTransparente.checked) {
-        console.log('estoy en revisarTextosYFranjas - ModificarEspaciosFranjas y SI hay fondo transparente');
         switch (true) {
             case fr2 == 'ambosTextos':
                 altoContenedorImag = espacioTarjeta - (altoFranja * 2);
@@ -461,7 +449,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
         }
     }
     else {
-        console.log('estoy en revisarTextosYFranjas - ModificarEspaciosFranjas y NO hay fondo transparente');
         switch (true) {
             case fr2 == 'ambosTextos':
                 altoContenedorImag = espacioTarjeta - (altoFranja * 2);
@@ -583,7 +570,7 @@ $colorTexto.addEventListener('input', function () {
 let $colorFondoTex = document.getElementById('colorFondoTex');  // para recuperar el valor del input type color  del fondo del texto
 let $labelColorFondoTex = document.querySelector('label[for="colorFondoTex"]');   // para interactuar con el label del input colorTexto del fondo del texto
 let $fondoTexto = document.getElementById('fondoTexto');
-$colorFondoTex.addEventListener('input', function () { aplicarColorDeFondo() });
+$colorFondoTex.addEventListener('input', function () {aplicarColorDeFondo()});
 
 // .........................................
 // .. Aplicar el color de fondo elegido
@@ -593,13 +580,11 @@ let aplicarColorDeFondo = () => {
     let fondoAuxFranja1;
     let fondoAuxFranja3;
     if ($colorFondoTex.value === '#ffffff') {
-        console.log('el color de fondo es blanco');
         fondoAuxFranja1 = 'linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 9%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 93%, rgb(118, 97, 97) 100%)';
         fondoAuxFranja3 = 'linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%)';
         $franja2Aux.style.background = 'radial-gradient(circle, #fcfbf2, #bebc99)';
     }
     else {
-        console.log('el color de fondo no es blanco')
         fondoAuxFranja1 = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
         fondoAuxFranja3 = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`
     }
@@ -609,30 +594,21 @@ let aplicarColorDeFondo = () => {
     }
     if (!$opcionFondoTransparente.checked) {
         $franja1.style.background = fondoAuxFranja1;
-        // `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
         $franja3.style.background = fondoAuxFranja3
-        // `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
-        // $franja2.style.position = '';
-        // $franja2.style.top = '';
-        // $franja2.style.height = '50vh';
     }
     else {
         $franja1.style.background.color = 'transparent';
         $franja1.style.zIndex = '4';
         $franja3.style.background = 'transparent';
         $franja3.style.zIndex = '4';
-        // $franja2Aux.style.background = `radial-gradient(circle, #fcfbf2, ${$colorFondoTex.value})`;
     }
 }
 
-// ...............................................1
+// ...............................................
 // .. Aplicación de check fondo transparente
 let $opcionFondoTransparente = document.getElementById('opcionFondoTransparente');
 $opcionFondoTransparente.addEventListener('input', () => {
-    // imagenTodoContenedor();
-
     revisarTextosYFranjas();
-    // aplicarColorDeFondo();
 });
 
 
