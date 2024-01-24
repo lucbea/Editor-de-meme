@@ -18,7 +18,7 @@ ___
 ---
 [Modos claro y oscuro](#modo-claro-y-modo-oscuro)
 ---
-[Paneles de "Texto" e "Imagen"](#paneles-de-texto-e-imagen)
+[Paneles de Texto e Imagen](#paneles-de-texto-e-imagen-1)
 ---
 ---
 ___
