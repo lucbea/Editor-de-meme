@@ -470,7 +470,7 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
                 $franja2.style.position = '';
                 $franja2.style.top = '';
                 $franja2.style.bottom = '';
-                $franja2.style.height = (altoContenedorImag + 35) + 'px';
+                $franja2.style.height = (altoContenedorImag + 10) + 'px';
                 $franja3.style.display = fr3;
                 $franja3.style.height = altoFranja + 'px';
                 break;

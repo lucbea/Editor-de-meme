@@ -169,6 +169,7 @@ i {
   display: flex;
   align-items: center;
   position: relative;
+  background: radial-gradient(circle, #fcfbf2, #bebc99);
 }
 
 .franja {
@@ -201,7 +202,7 @@ i {
 }
 
 #franja2 {
-  height: 50vh;
+  /* height: 100%; */
   object-fit: contain;
   background: radial-gradient(circle, #fcfbf2, #bebc99);
   position: relative;
