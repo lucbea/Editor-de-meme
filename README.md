@@ -10,6 +10,12 @@ ___
 - JAVA SCRIPT
 ---
 
+---
+**[Explora mi proyecto en tu navegador](https://lucbea.github.io/Editor-de-meme/)** 
+### Espero que lo disfrutes, como lo hice yo cuando lo programé
+---
+---
+
 ## Breve descripción del proyecto "Generador de Meme"
 ---
 [MEME](#meme-1)
@@ -44,10 +50,6 @@ ___
 - Cambiar padding de texto
 - Cambiar alto de línea de texto
 
----
-[Explora mi proyecto en tu navegador](https://lucbea.github.io/Editor-de-meme/) ... 
-### Espero que lo disfrutes, como lo hice yo cuando lo programé
----
 ---
 ### ***Imágenes de mi proyecto***
 #### Meme
