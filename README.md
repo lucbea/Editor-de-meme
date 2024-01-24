@@ -14,9 +14,9 @@ ___
 ---
 [MEME](#meme)
 ---
-[Responsive](#diseño-responsive)
+[Diseño responsive](#diseño-responsive)
 ---
-[Apariencias] (#modo-claro-y-modo-oscuro)
+[Apariencias: modo claro y modo oscuro](#modo-claro-y-modo-oscuro)
 ---
 [Paneles de "Texto" e "Imagen".](#paneles-de-texto-e-imagen)
 ---
