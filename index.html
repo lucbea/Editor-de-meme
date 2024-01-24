@@ -29,27 +29,25 @@
         <nav id="nav">
             <h1>Generador de Memes</h1>
             <ul class="menuOpciones">
-                <li class="opcion" tabindex="0">
-                    <button type="button" id="botonImagen">
+                <li class="opcion">
+                    <button type="button" id="botonImagen" class="botonNav" aria-label="Boton para abrir panel de imagen">
                         <div class="contornoBoton">
-                            <!-- <i class="far fa-file-image botonIconoTexto " aria-hidden="true"></i> -->
                             <i class="fas fa-file-image botonIconoTexto" aria-hidden="true"></i>
                             <p>IMAGEN</p>
                         </div>
                     </button>
                 </li>
-                <li class="opcion" tabindex="0">
-                    <button type="button" id="botonTexto">
+                <li class="opcion">
+                    <button type="button" id="botonTexto" class="botonNav" aria-label="Botón para abrir panel de texto">
                         <div class="contornoBoton">
                             <i class="fas fa-font botonIconoTexto" aria-hidden="true"></i>
                             <p>TEXTO</p>
                         </div>
                     </button>
                 </li>
-                <li class="opcion" tabindex="0">
-                    <button type="button" id="botonModo">
+                <li class="opcion">
+                    <button type="button" id="botonModo" class="botonNav" aria-label="Botón para intercambiar modo claro y modo oscuro">
                         <div id="modoClaroOscuro" class="contornoBoton">
-                            <!-- <i class="far fa-lightbulb botonIconoTexto" aria-hidden="true"></i> -->
                             <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true"></i>
                             <p id="modoClaOsc">MODO OSCURO</p>
                         </div>
@@ -63,46 +61,43 @@
             <div class="contenedor">
                 <div id="tarjeta" class="tarjeta">
                     <div class="franja" id="franja1">
-                        <h2 id="textoArriba">TOP TEXT</h2>
+                        <h2 id="textoArriba">TOP TEXT  </h2>
                     </div>
                     <div id="franja2" class="franja franja-2">
-                        <!-- <img src="" alt=""> -->
                     </div>
                     <div id="franja3" class="franja franja-3">
                         <h2 id="textoAbajo">BOTTOM TEXT</h2>
                     </div>
                     <div id="franja2Aux"></div>
-                    <!-- <div id="franja2BlendMode"><div> revisar estos divs -->
-                    <!-- <div id="franja2AuxBlendMode"></div>  revisar estos divs -->
                 </div>
             </div>
         </section>
         <section class="panel">
-            <div id="panel" tabindex="0">
-                <button id="cierrePanel" type="button">x</button>
+            <div id="panel">
+                <button id="cierrePanel" type="button" tabindex="0" aria-label="Cierre de panel">x</button>
                 <section id="panelImagen">
                     <h3 class="tituloPanel">IMAGEN</h3>
                     <div class="panelInterior">
                         <div class="contenIngresoIm">
                             <label class="subtitulo" for="url">URL</label>
                             <input id="ingresoURL" class="ingresoEtiqueta" tabindex="0" type="text" name="url"
-                                placeholder="" required>
+                                placeholder="" required aria-label="Ingreso de URL ">
                         </div>
                         <div class="contenIngresoIm">
                             <h3 class="subtitulo">FONDO</h3>
                             <div class="contenFondo">
                                 <div id="fondoTextoImg" class="fondoTexto ingresoEtiqueta">
-                                    <input id="colorFondo" tabindex="0" type="color" name="colorFondo" value="#FFFFFF">
+                                    <input id="colorFondo" tabindex="0" type="color" name="colorFondo" value="#FFFFFF" aria-label="Color de fondo para Blend-mode ">
                                     <label for="colorFondo">#FFFFFF</label>
                                 </div>
                                 <div class="otrasOpcionesImagen">
-                                    <select id="otrasOpcionesImagen" class="opciones" name="opciones">
-                                        <option value="unset">NINGUNO</option>
-                                        <option value="lighten">ACLARAR</option>
-                                        <option value="darken">OSCURECER</option>
-                                        <option value="difference">DIFERENCIA</option>
-                                        <option value="luminosity">LUMINOSIDAD</option>
-                                        <option value="multiply">MULTIPLICAR</option>
+                                    <select id="otrasOpcionesImagen" class="opciones" name="opciones" tabindex="0" aria-label="Opciones de Blend-mode">
+                                        <option value="unset" tabindex="2" aria-label="Ninguno">NINGUNO</option>
+                                        <option value="lighten" tabindex="3" aria-label="Aclarar">ACLARAR</option>
+                                        <option value="darken" tabindex="4" aria-label="Oscurecer">OSCURECER</option>
+                                        <option value="difference" tabindex="5" aria-label="Diferencia">DIFERENCIA</option>
+                                        <option value="luminosity" tabindex="6" aria-label="Luminosidad">LUMINOSIDAD</option>
+                                        <option value="multiply" tabindex="7" aria-label="Multiplicar">MULTIPLICAR</option>
                                     </select>
                                 </div>
                             </div>
@@ -111,102 +106,101 @@
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="brillo">Brillo</label>
                             <input id="brillo" tabindex="0" type="range" name="brillo" min="0" max="1" step="0.1"
-                                value="1">
+                                value="1" aria-label="Brillo">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="opacidad">Opacidad</label>
                             <input id="opacidad" tabindex="0" type="range" name="opacidad" min="0" max="1" step="0.1"
-                                value="1">
+                                value="1" aria-label="Opacidad">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="contraste">Contraste</label>
                             <input id="contraste" tabindex="0" type="range" name="contraste" min="100" max="1000"
-                                step="1" value="100">
+                                step="1" value="100" aria-label="Contraste">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="desenfoque">Desenfoque</label>
                             <input id="desenfoque" tabindex="0" type="range" name="desenfoque" min="0" max="10"
-                                step="0.1" value="0">
+                                step="0.1" value="0" aria-label="Desenfoque">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="escalaGris">Escala de grises</label>
                             <input id="escalaGris" tabindex="0" type="range" name="escalaGris" min="0" max="100"
-                                step="1" value="0">
+                                step="1" value="0" aria-label="Escala de gris">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="sepia">Sepia</label>
                             <input id="sepia" tabindex="0" type="range" name="sepia" min="0" max="100" step="1"
-                                value="0">
+                                value="0" aria-label="Escala de sepia">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="hue">Hue</label>
-                            <input id="hue" tabindex="0" type="range" name="hue" min="0" max="359" step="1" value="0">
+                            <input id="hue" tabindex="0" type="range" name="hue" min="0" max="359" step="1" value="0" aria-label="Hue">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="saturado">Saturado</label>
                             <input id="saturado" tabindex="0" type="range" name="saturado" min="100" max="1000"
-                                step="10" value="100">
+                                step="10" value="100" aria-label="Saturado">
                         </div>
                         <div class="contenIngresoImFilt">
                             <label class="filtroRango" for="negativo">Negativo</label>
                             <input id="negativo" tabindex="0" type="range" name="negativo" min="0" max="1" step="0.1"
-                                value="0">
+                                value="0" aria-label="Negativo">
                         </div>
                         <div class="contenReestablecer">
-                            <button id="botonReestablecer" class="reestablecer ingresoEtiqueta" type="reset">Restablecer
+                            <button id="botonReestablecer" class="reestablecer ingresoEtiqueta" type="reset" aria-label="Boton para reestablecer filtros de imagen">Restablecer
                                 filtros</button>
                         </div>
 
                     </div>
                 </section>
-                <section id="panelTexto">
+                <section>
                     <div id="panelTexto">
                         <h3 class="tituloPanel">TEXTO</h3>
                         <div class="panelInterior">
                             <div id="textSup" class="contenIngreso">
                                 <label class="subtitulo" for="superior">SUPERIOR</label>
                                 <input id="ingresoTextoSuperior" tabindex="0" type="text" name="superior"
-                                    placeholder="TOP TEXT" required>
+                                    placeholder="TOP TEXT" required aria-label="Ingreso de texto superior">
                                 <div class="opcion tilde">
                                     <input type="checkbox" id="sinTextoSuperior" class="opcionTextoSuperior"
-                                        name="opcionTextoSuperior" value="aceptado">
+                                        name="opcionTextoSuperior" value="aceptado" aria-label="Opcion para no mostrar texto superior">
                                     <label for="sinTextoSuperior">Sin texto superior</label>
                                 </div>
                             </div>
                             <div id="textInf" class="contenIngreso">
                                 <label class="subtitulo" for="inferior">INFERIOR</label>
                                 <input id="ingresoTextoInferior" tabindex="0" type="text" name="inferior"
-                                    placeholder="BOTTOM TEXT" required>
+                                    placeholder="BOTTOM TEXT" required aria-label="Ingreso de texto inferior">
                                 <div class="opcion tilde">
                                     <input type="checkbox" id="sinTextoInferior" class="sinTextoInferior"
-                                        name="opcionTextoInferior" value="aceptado">
+                                        name="opcionTextoInferior" value="aceptado"   aria-label="Opcion para no mostrar texto inferior">
                                     <label for="sinTextoInferior">Sin texto inferior</label>
                                 </div>
                             </div>
                             <div id="formatoTexto" class="contenIngreso">
                                 <label class="subtitulo" for="elecFuente">FUENTE</label>
-                                <select id="elecFuente" class="contenIngreso" name="elecFuente">
-                                    <option value="Arial">ARIAL</option>
-                                    <option value="Arial Black">ARIAL BLACK</option>
-                                    <option value="American Typewriter">AMERICAN TYPEWRITER</option>
-                                    <option value="Calibri" selected>CALIBRI</option>
-                                    <option value="Comic Sans MS">COMIC SANS MS</option>
-                                    <option value="Helvetica">HELVETICA</option>
-                                    <option value="Impact">IMPACT</option>
-                                    <option value="Times New Roman">TIMES NEW ROMAN</option>
-                                    <option value="Verdana">VERDANA</option>
+                                <select id="elecFuente" class="contenIngreso" name="elecFuente" aria-label="Opcion de fuente">
+                                    <option value="Arial" selected aria-label="Arial">ARIAL</option>
+                                    <option value="Arial Black" aria-label="Arial black">ARIAL BLACK</option>
+                                    <option value="American Typewriter" aria-label="American typewriter">AMERICAN TYPEWRITER</option>
+                                    <option value="Calibri" aria-label="Calibri">CALIBRI</option>
+                                    <option value="Helvetica" aria-label="Helvetica">HELVETICA</option>
+                                    <option value="Impact" aria-label="Impact">IMPACT</option>
+                                    <option value="Times New Roman" aria-label="Times new toman">TIMES NEW ROMAN</option>
+                                    <option value="Verdana" aria-label="Verdana">VERDANA</option>
                                 </select>
                                 <div id="tamanioFuenteAlinea">
                                     <input id="tamanioFuente" type="number" name="size" min="12" max="161" step="1"
-                                        value="36">
+                                        value="36" aria-label="Tamaño de fuente">
                                     <div id="alineacion">
-                                        <button id="alineaIzq" class="alineacion">
+                                        <button id="alineaIzq" class="alineacion"  aria-label="Alineacion izquierda del texto">
                                             <i class="fas fa-align-left iconoAlineacion" aria-hidden="true"></i>
                                         </button>
-                                        <button id="alineaCen" class="alineacion">
+                                        <button id="alineaCen" class="alineacion" aria-label="Alineacion centrada del texto">
                                             <i class="fas fa-align-center iconoAlineacion" aria-hidden="true"></i>
                                         </button>
-                                        <button id="alineaDer" class="alineacion">
+                                        <button id="alineaDer" class="alineacion" aria-label="Alineacion derecha del texto">
                                             <i class="fas fa-align-right iconoAlineacion" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -217,23 +211,23 @@
                                     <div>
                                         <h3 class="subtitulo">COLOR</h3>
                                         <div class="colorTexto ingresoEtiqueta">
-                                            <input id="colorTexto" tabindex="0" type="color" name="colorTexto"
-                                                value="#000000">
+                                            <input id="colorTexto" type="color" name="colorTexto"
+                                                value="#000000" aria-label="Color del texto">
                                             <label for="colorTexto">#000000</label>
                                         </div>
                                     </div>
                                     <div>
                                         <h3 class="subtitulo">FONDO</h3>
                                         <div id="fondoTexto" class="fondoTexto ingresoEtiqueta">
-                                            <input id="colorFondoTex" tabindex="0" type="color" name="colorFondo"
-                                                value="#FFFFFF">
+                                            <input id="colorFondoTex" type="color" name="colorFondo"
+                                                value="#FFFFFF" aria-label="Color de fondo">
                                             <label for="colorFondoTex">#FFFFFF</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="opcion tilde">
                                     <input type="checkbox" id="opcionFondoTransparente" name="opcionFondoTranstarente"
-                                        value="aceptado">
+                                        value="aceptado" aria-label="Opcion fondo transparente">
                                     <label for="opcionFondoTransparente">Fondo transparente</label>
                                 </div>
                             </div>
@@ -243,25 +237,25 @@
                         <div id="contorno" class="contenIngreso">
                             <h3 class="subtitulo">CONTORNO</h3>
                             <div class="formatoBotonesContorno">
-                                <button id="opcionContNinguno" class="opcionContorno ingresoEtiqueta">NINGUNO</button>
-                                <button id="opcionContClaro" class="opcionContorno ingresoEtiqueta">CLARO</button>
-                                <button id="opcionContOscuro" class="opcionContorno ingresoEtiqueta">OSCURO</button>
+                                <button id="opcionContNinguno" class="opcionContorno ingresoEtiqueta" aria-label="Sin contorno del texto">NINGUNO</button>
+                                <button id="opcionContClaro" class="opcionContorno ingresoEtiqueta" aria-label="Contorno claro del texto">CLARO</button>
+                                <button id="opcionContOscuro" class="opcionContorno ingresoEtiqueta" aria-label="Contorno oscuro del texto">OSCURO</button>
                             </div>
                         </div>
                         <div id="formatoEspaciado" class="contenIngreso">
                             <label class="subtitulo" for="elecEspaciado">ESPACIADO</label>
                             <input id="elecEspaciado" type="number" name="elecEspaciado" min="10" max="35" step="1"
-                                value="15">
+                                value="15" aria-label="Opción de espaciado">
                         </div>
                         <div class="contenIngreso">
                             <label class="subtitulo" for="opcionesInterlineado">INTERLINEADO</label>
-                            <select id="opcionesInterlineado" class="opciones" name="opciones">
-                                <option value="0.8">0.8</option>
-                                <option value="1" selected>1</option>
-                                <option value="1.2">1.2</option>
-                                <option value="1.5">1.5</option>
-                                <option value="2">2</option>
-                                <option value="2.5">2.5</option>
+                            <select id="opcionesInterlineado" class="opciones" name="opciones" aria-label="Opción de interlineado">
+                                <option value="0.8" aria-label="Ocho décimas">0.8</option>
+                                <option value="1" selected aria-label="Uno">1</option>
+                                <option value="1.2" aria-label="Un entero y dos décimas">1.2</option>
+                                <option value="1.5" aria-label="Un entero y cinco décimas">1.5</option>
+                                <option value="2" aria-label="Dos">2</option>
+                                <option value="2.5" aria-label="Dos enteros y cinco décimas">2.5</option>
                             </select>
                         </div>
                     </div>
@@ -270,14 +264,12 @@
         </section>
         </div>
         </section>
-
-        <!-- <section class="imagenFondo">
-            <img id="imagenMonigote" src="./imagen/monigote.gif" alt="monigote.gif">
-        </section> -->
+        
     </main>
     <footer>
-        <div class="botonDescarga" tabindex="0">
-            <button id="descargaBoton" class="descargaBoton">Descargar meme</button>
+        <div class="botonDescarga">
+            <button id="descargaBoton" class="descargaBoton" aria-label="Botón de descarga">Descargar meme</button>
+        </div>
         </div>
     </footer>
     <script src="./script.js"></script>
