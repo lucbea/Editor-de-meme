@@ -12,13 +12,13 @@ ___
 
 ## Breve descripción del proyecto "Generador de Meme"
 ---
-[MEME](#meme)
+[MEME](#meme-1)
 ---
-[Diseño responsive](#diseño-responsive)
+[Responsive](#diseño-responsive)
 ---
 [Apariencias: modo claro y modo oscuro](#modo-claro-y-modo-oscuro)
 ---
-[Paneles de "Texto" e "Imagen".](#paneles-de-texto-e-imagen)
+[Paneles de "Texto" e "Imagen".](#paneles-de-texto-e-imagen-1)
 ---
 ---
 ___
