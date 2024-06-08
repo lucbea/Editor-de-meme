@@ -30,19 +30,19 @@
                 <li class="opcion">
                     <button type="button" id="botonImagen" aria-label="Botón de imagen" class="contornoBoton">
                         <i class="fas fa-file-image botonIconoTexto" aria-hidden="true"></i>
-                        <p>IMAGEN</p>
+                        <span>IMAGEN</span>
                     </button>
                 </li>
                 <li class="opcion">
                     <button type="button" id="botonTexto" class="contornoBoton">
                         <i class="fas fa-font botonIconoTexto" aria-hidden="true"></i>
-                        <p>TEXTO</p>
+                        <span>TEXTO</span>
                     </button>
                 </li>
                 <li class="opcion">
                     <button type="button" id="botonModo" class="contornoBoton">
                         <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true"></i>
-                        <p id="modoClaOsc">MODO OSCURO</p>
+                        <span id="modoClaOsc">MODO OSCURO</span>
                     </button>
                 </li>
             </ul>
@@ -73,7 +73,7 @@
                     <h3 class="tituloPanel">IMAGEN</h3>
                     <div class="panelInterior">
                         <div class="contenIngresoIm">
-                            <label class="subtitulo" for="url">URL</label>
+                            <label class="subtitulo" for="ingresoUrl">URL</label>
                             <input id="ingresoURL" class="ingresoEtiqueta" tabindex="0" type="text" name="url"
                                 placeholder="" required>
                         </div>
@@ -147,12 +147,12 @@
                         </div>
                     </div>
                 </section>
-                <section id="panelTexto">
+                <section class="panelTexto">
                     <div id="panelTexto">
                         <h3 class="tituloPanel">TEXTO</h3>
                         <div class="panelInterior">
                             <div id="textSup" class="contenIngreso">
-                                <label class="subtitulo" for="superior">SUPERIOR</label>
+                                <label class="subtitulo" for="ingresoTextoSuperior">SUPERIOR</label>
                                 <input id="ingresoTextoSuperior" tabindex="0" type="text" name="superior"
                                     placeholder="TOP TEXT" required>
                                 <div class="opcion tilde">
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <div id="textInf" class="contenIngreso">
-                                <label class="subtitulo" for="inferior">INFERIOR</label>
+                                <label class="subtitulo" for="ingresoTextoInferior">INFERIOR</label>
                                 <input id="ingresoTextoInferior" tabindex="0" type="text" name="inferior"
                                     placeholder="BOTTOM TEXT" required>
                                 <div class="opcion tilde">
