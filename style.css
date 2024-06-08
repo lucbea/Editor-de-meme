@@ -217,6 +217,10 @@ img {
 
 
 /* Formato Paneles de imagen y texto - Inicio */
+.hidden {
+  display: none;
+}
+
 #panel {
   padding: 25px 40px 15px;
   height: 99.95vh;
