@@ -2,16 +2,34 @@
   button:focus {
     box-shadow: 0px 1px 1px 0px #b8b6b6;
   }
+
   button:active {
     box-shadow: 0px 0px 6px 1px #ffffff;
   }
 }
 
+
+@media (min-width:276px) and (max-width:283px) {
+
+  nav {
+    height: 84px;
+  }
+
+  .contenedor {
+    margin-top: 33px;
+    margin-bottom: 8px;
+  }
+}
+
+
 @media (min-width:284px) and (max-width:699px) {
+
+  nav {
+    height: 94px;
+  }
 
   h1 {
     font-size: 180%;
-    margin-block: 15px;
   }
 
   li {
@@ -23,12 +41,16 @@
     padding: 25px 20px 15px;
   }
 
+  .contenedor {
+    margin-bottom: 18px;
+  }
 }
+
 
 @media (min-width:700px) and (max-width:1299px) {
 
-  .contenedor {
-    width: 60%;
+  nav {
+    height: 94px;
   }
 
   h1 {
@@ -42,12 +64,18 @@
   #panel {
     padding: 25px 20px 15px;
   }
+
+  .contenedor {
+    width: 60%;
+    margin-bottom: 18px;
+  }
 }
+
 
 @media (min-width:1300px) {
 
-  .contenedor {
-    width: 55%;
+  nav {
+    height: 94px;
   }
 
   h1 {
@@ -67,4 +95,8 @@
     display: none;
   }
 
+  .contenedor {
+    width: 55%;
+    margin-bottom: 18px;
+  }
 }

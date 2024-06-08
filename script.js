@@ -13,7 +13,7 @@ let $panelTexto = document.getElementById("panelTexto");
 // ..........................................
 // .. Función para obtener el tamaño de la pantalla ..
 function preguntaTamanioVentana() {
-	return window.innerWidth; // Devuelve el ancho pantalla
+	return window.innerWidth; 
 }
 
 // .............................................
@@ -28,7 +28,7 @@ window.addEventListener("resize", function () {
 		) {
 			$panel.style.display = "block";
 		} else {
-			$panelImagen.style.display = "block"; // muestra panel de imagen
+			$panelImagen.style.display = "block"; 
 			$panel.style.display = "block";
 		}
 	} else {
@@ -51,9 +51,7 @@ $botonImagen.addEventListener("click", (event) => {
 	$panelImagen.style.display = "block";
 	$panel.style.display = "block";
 	$panelTexto.style.display = "none";
-	// Llama a la función para obtener el tamaño de la pantalla y mostrar o no el botón X
 	tamanioVentana = preguntaTamanioVentana();
-	// Pregunta si el boton cierre esta display o none en función del tamaño de la ventana
 	if (tamanioVentana > 1299) {
 		$cierrePanel.style.display = "none";
 	} else {
@@ -67,8 +65,7 @@ $botonTexto.addEventListener("click", (event) => {
 	$panelTexto.style.display = "block";
 	$panel.style.display = "block";
 	$panelImagen.style.display = "none";
-	tamanioVentana = preguntaTamanioVentana(); // Llama a la función para obtener el tamaño de la pantalla y muestra o no el botón X
-	// Pregunta si el boton cierre esta display o none en función del tamaño de la ventana
+	tamanioVentana = preguntaTamanioVentana(); 
 	if (tamanioVentana > 1299) {
 		$cierrePanel.style.display = "none";
 	} else {
@@ -89,6 +86,8 @@ let cierre = () => {
 	$panel.style.display = "none";
 };
 
+
+
 // ***********************
 // ***********************
 // Panel Imagen
@@ -97,72 +96,66 @@ let cierre = () => {
 
 // ...................................................
 // .. Inicialización de variables para Panel Imagen ..
-let $ingresoURL = document.getElementById("ingresoURL"); // id de la URL que se ingresa
-let $tarjeta = document.getElementById("tarjeta"); // para recuperar el contenedor de imagen y texto
-let $franja1 = document.getElementById("franja1"); // div donde esta el texto superior
-let $franja2 = document.getElementById("franja2"); // franja2 es el id del contenedor de la imagen que se insertará desde java
-let $franja3 = document.getElementById("franja3"); // div donde está el texto inferior
-let $botonReestablecer = document.getElementById("botonReestablecer"); // boton para resetear filtros
-let $img; // variable para esperar el ingreso de la imagen en html desde java
-let $brilloF = document.getElementById("brillo"); // valor del input range
-let $opacidadF = document.getElementById("opacidad"); // valor del input range
-let $desenfoqueF = document.getElementById("desenfoque"); // valor del input range
-let $contrasteF = document.getElementById("contraste"); // valor del input range
-let $escalaGrisF = document.getElementById("escalaGris"); // valor del input range
-let $sepiaF = document.getElementById("sepia"); // valor del input range
-let $hueF = document.getElementById("hue"); // valor del input range
-let $saturadoF = document.getElementById("saturado"); // valor del input range
-let $negativoF = document.getElementById("negativo"); // valor del input range
-let $brillo = 1; // valor inicial de las variables para aplicar estilo a la imagen
-let $opacidad = 1; // valor inicial de las variables para aplicar estilo a la imagen
-let $desenfoque = 0; // valor inicial de las variables para aplicar estilo  a la imagen
-let $contraste = 100; // valor inicial de las variables para aplicar estilo a la imagen
-let $escalaGris = 0; // valor inicial de las variables para aplicar estilo a la imagen
-let $sepia = 0; // valor inicial de las variables para aplicar estilo a la imagen
-let $hue = 0; // valor inicial de las variables para aplicar estilo a la imagen
-let $saturado = 100; // valor inicial de las variables para aplicar estilo a la imagen
-let $negativo = 0; // valor inicial de las variables para aplicar estilo a la imagen
+let $ingresoURL = document.getElementById("ingresoURL"); 
+let $tarjeta = document.getElementById("tarjeta"); 
+let $franja1 = document.getElementById("franja1"); 
+let $franja2 = document.getElementById("franja2"); 
+let $franja3 = document.getElementById("franja3"); 
+let $botonReestablecer = document.getElementById("botonReestablecer"); 
+let $img; 
+let $brilloF = document.getElementById("brillo"); 
+let $opacidadF = document.getElementById("opacidad"); 
+let $desenfoqueF = document.getElementById("desenfoque"); 
+let $contrasteF = document.getElementById("contraste"); 
+let $escalaGrisF = document.getElementById("escalaGris"); 
+let $sepiaF = document.getElementById("sepia"); 
+let $hueF = document.getElementById("hue"); 
+let $saturadoF = document.getElementById("saturado"); 
+let $negativoF = document.getElementById("negativo"); 
+let $brillo = 1; 
+let $opacidad = 1; 
+let $desenfoque = 0; 
+let $contraste = 100; 
+let $escalaGris = 0; 
+let $sepia = 0; 
+let $hue = 0; 
+let $saturado = 100; 
+let $negativo = 0; 
 
 $ingresoURL.addEventListener("input", (event) => {
-	// if (event.key === 'Enter') {
 	event.preventDefault();
-	// alert('reestablecer luego');
 	cargarImagen();
-	reestablecer(); // al ingresar nueva imagen inicia los botones de los input range
-	iniciarBlendMode(); //al ingresar URL inicia opciones de blend mode
-
-	// }
+	reestablecer(); 
+	iniciarBlendMode(); 
 });
 
 // ...........................................
 // .. Funcion para reestablecer los filtros ..
 let reestablecer = () => {
-	$brillo = $brilloF.max; // valor por defecto para la imagen
-	$opacidad = $opacidadF.max; // valor por defecto para la imagen
-	$contraste = $contrasteF.min; // valor por defecto para la imagen
-	$desenfoque = $desenfoqueF.min; // valor por defecto para la imagen
-	$escalaGris = $escalaGrisF.min; // valor por defecto para la imagen
-	$sepia = $sepiaF.min; // valor por defecto para la imagen
-	$hue = $hueF.min; // valor por defecto para la imagen
-	$saturado = $saturadoF.min; // valor por defecto para la imagen
-	$negativo = $negativoF.min; // valor por defecto para la imagen
-	// alert('iniciarFiltros luego');
+	$brillo = $brilloF.max; 
+	$opacidad = $opacidadF.max; 
+	$contraste = $contrasteF.min; 
+	$desenfoque = $desenfoqueF.min; 
+	$escalaGris = $escalaGrisF.min; 
+	$sepia = $sepiaF.min;
+	$hue = $hueF.min; 
+	$saturado = $saturadoF.min; 
+	$negativo = $negativoF.min; 
 	iniciarFiltros();
 };
 
 // ...............................................................................
 // .. Funcion para iniciar los botones de los input range al colocar una imagen ..
 let iniciarFiltros = () => {
-	$brilloF.value = 1; // reinicio del boton del input range
-	$opacidadF.value = 1; // reinicio del boton del input range
-	$desenfoqueF.value = 0; // reinicio del boton del input range
-	$contrasteF.value = 100; // reinicio del boton del input range
-	$escalaGrisF.value = 0; // reinicio del boton del input range
-	$sepiaF.value = 0; // reinicio del boton del input range
-	$hueF.value = 0; // reinicio del boton del input range
-	$saturadoF.value = 100; // reinicio del boton del input range
-	$negativoF.value = 0; // reinicio del boton del input range
-	// alert('modificarImagen luego');
+	$brilloF.value = 1; 
+	$opacidadF.value = 1; 
+	$desenfoqueF.value = 0; 
+	$contrasteF.value = 100; 
+	$escalaGrisF.value = 0; 
+	$sepiaF.value = 0; 
+	$hueF.value = 0; 
+	$saturadoF.value = 100; 
+	$negativoF.value = 0; 
 	modificarImagen();
 };
 
@@ -175,20 +168,19 @@ let iniciarBlendMode = () => {
 
 // ...........................................
 // .. Captura de URL, ingreso de imagen al HTML e inserción de imagen en variable general $img
-// let $franja = document.getElementsByClassName('.franja');
 let cargarImagen = () => {
 	if ($ingresoURL.value) {
 		$franja2.innerHTML = "";
 		$franja2.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
-		$img = document.getElementById("img"); // guardo la información de la imagen en variable general $img
+		$img = document.getElementById("img"); 
 		revisarTextosYFranjas();
 	}
 };
 
 // ...........................................
 // Modificación del color del fondo del panel Imagen
-let $colorFondo = document.getElementById("colorFondo"); // para recuperar el valor del input type color  del fondo del texto - panel Imagen
-let $labelColorFondo = document.querySelector('label[for="colorFondo"]'); // para interactuar con el label del input colorTexto del fondo del texto
+let $colorFondo = document.getElementById("colorFondo"); 
+let $labelColorFondo = document.querySelector('label[for="colorFondo"]'); 
 let $fondoTextoImg = document.getElementById("fondoTextoImg");
 $colorFondo.addEventListener("input", function () {
 	$labelColorFondo.textContent = $colorFondo.value.toUpperCase();
@@ -200,15 +192,12 @@ $colorFondo.addEventListener("input", function () {
 $otrasOpcionesImagen = document.getElementById("otrasOpcionesImagen");
 $otrasOpcionesImagen.addEventListener("input", () => {
 	if ($ingresoURL.value) {
-		console.log("hay URL ingresada", $ingresoURL, $ingresoURL.value);
-		// Si hay URL ingresada, solicita el blend mode y lo aplica
 		aplicarBlendMode($otrasOpcionesImagen);
 	} else {
-		// Si no hay URL ingresada, establecer el blend mode a "unset" (ninguno)
-		$otrasOpcionesImagen.value = "normal"; // Aquí establece el valor por defecto
-		$colorFondo.value = "#FFFFFF"; // Cambia al color original
+		$otrasOpcionesImagen.value = "normal"; 
+		$colorFondo.value = "#FFFFFF"; 
 		$labelColorFondo.textContent = $colorFondo.value.toUpperCase();
-		$otrasOpcionesImagen.value = "unset"; //si no coloco esta sentencia me borra la opción por defecto
+		$otrasOpcionesImagen.value = "unset"; 
 	}
 });
 
@@ -217,11 +206,9 @@ $otrasOpcionesImagen.addEventListener("input", () => {
 let aplicarBlendMode = (estiloBlend) => {
 	if ($ingresoURL.value) {
 		$franja2.style.background = $colorFondo.value;
-		// Aplico blend a la imagen con color de fondo
 		$img.style.mixBlendMode = estiloBlend.value;
 		if (estiloBlend.value === "unset") {
-			console.log("es unset");
-			$colorFondo.value = "#FFFFFF"; // Cambia al color original
+			$colorFondo.value = "#FFFFFF";
 			$labelColorFondo.textContent = "#FFFFFF";
 		}
 	}
@@ -229,67 +216,56 @@ let aplicarBlendMode = (estiloBlend) => {
 
 // ...................................................
 // .. Captura de los input range -filtros de imagen ..
-
-// Captura brillo
 $brilloF.addEventListener("input", function () {
 	$brillo = $brilloF.value;
 	modificarImagen();
 });
 
-// Captura opacidad
 $opacidadF.addEventListener("input", function () {
 	$opacidad = $opacidadF.value;
 	modificarImagen();
 });
 
-// Captura contraste
 $contrasteF.addEventListener("input", function () {
 	$contraste = $contrasteF.value;
 	modificarImagen();
 });
 
-// Captura desenfoque
 $desenfoqueF.addEventListener("input", function () {
 	$desenfoque = $desenfoqueF.value;
 	modificarImagen();
 });
 
-// Captura escalaGris
 $escalaGrisF.addEventListener("input", function () {
 	$escalaGris = $escalaGrisF.value;
 	modificarImagen();
 });
 
-// Captura sepia
 $sepiaF.addEventListener("input", function () {
 	$sepia = $sepiaF.value;
 	modificarImagen();
 });
 
-// Captura hue
 $hueF.addEventListener("input", function () {
 	$hue = $hueF.value;
 	modificarImagen();
 });
 
-// Captura saturado
 $saturadoF.addEventListener("input", function () {
 	$saturado = $saturadoF.value;
 	modificarImagen();
 });
 
-// Captura negativo
 $negativoF.addEventListener("input", function () {
 	$negativo = $negativoF.value;
 	modificarImagen();
 });
 
+
 // ......................................
 // .. Función que recibe el valor de los input range para modificar la imagen
 let modificarImagen = () => {
-	// alert('img luego');
 	if ($img) {
-		console.log($img, $img.value);
 		$img = document.getElementById("img");
 		$img.style.filter = `brightness(${$brillo}) opacity(${$opacidad}) contrast(${$contraste}%) blur(${$desenfoque}px) grayscale(${$escalaGris}%) sepia(${$sepia}%) hue-rotate(${$hue}deg) saturate(${$saturado}%) invert(${$negativo})`;
 	}
@@ -302,6 +278,8 @@ $botonReestablecer.addEventListener("click", (event) => {
 	reestablecer();
 });
 
+
+
 // ***********************
 // ***********************
 // Panel Texto
@@ -313,12 +291,10 @@ $botonReestablecer.addEventListener("click", (event) => {
 let $textoArriba = document.getElementById("textoArriba");
 let $ingresoTextoSuperior = document.getElementById("ingresoTextoSuperior");
 $ingresoTextoSuperior.addEventListener("change", (event) => {
-	// if (event.key === 'Enter') {
 	event.preventDefault();
 	let textoIngresado = $ingresoTextoSuperior.value;
 	completarTexto($ingresoTextoSuperior, textoIngresado);
 	revisarTextosYFranjas();
-	// }
 });
 
 // ................................
@@ -327,12 +303,10 @@ let $textoAbajo = document.getElementById("textoAbajo");
 let $ingresoTextoInferior = document.getElementById("ingresoTextoInferior");
 
 $ingresoTextoInferior.addEventListener("change", (event) => {
-	// if (event.key === 'Enter') {
 	event.preventDefault();
 	let textoIngresado = $ingresoTextoInferior.value;
 	completarTexto($ingresoTextoInferior, textoIngresado);
 	revisarTextosYFranjas();
-	// }
 });
 
 //.................................................
@@ -366,7 +340,6 @@ $sinTextoInferior.addEventListener("input", () => {
 // .. Función que adapta los div segun los input check
 let revisarTextosYFranjas = () => {
 	if (!$opcionFondoTransparente.checked) {
-		console.log("sin texto transparente");
 		switch (true) {
 			case $sinTextoInferior.checked && $sinTextoSuperior.checked:
 				modificarEspacioFranjas("none", "sinTexto", "none");
@@ -378,12 +351,10 @@ let revisarTextosYFranjas = () => {
 				modificarEspacioFranjas("none", "textoInf", "flex");
 				break;
 			case !$sinTextoInferior.checked && !$sinTextoSuperior.checked:
-				console.log("ambos textos");
 				modificarEspacioFranjas("flex", "ambosTextos", "flex");
 				break;
 		}
 	} else {
-		console.log("con texto transparente");
 		switch (true) {
 			case $sinTextoInferior.checked && $sinTextoSuperior.checked:
 				modificarEspacioFranjas("none", "sinTexto", "none");
@@ -411,16 +382,13 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 	let altoBody = $body.offsetHeight + 10;
 	const altoFooter = 42;
 	const altoNav = 104;
-	const espacioYaOcupado = altoFooter + altoNav + 42; // 42 de margin-block y padding por la letra del contenedor
+	const espacioYaOcupado = altoFooter + altoNav + 42; 
 	let espacioTarjeta = altoBody - espacioYaOcupado;
 	let altoFranja =
 		parseFloat($opcionesInterlineado.value) * parseInt($tamanioFuente.value) +
 		parseInt($elecEspaciado.value) * 2;
-	let altoContenedorImag = 0; // para calcular el tamaño del contenedor de la imagen
+	let altoContenedorImag = 0; 
 	if ($opcionFondoTransparente.checked) {
-		console.log(
-			"estoy en revisarTextosYFranjas - ModificarEspaciosFranjas y SI hay fondo transparente"
-		);
 		switch (true) {
 			case fr2 == "ambosTextos":
 				altoContenedorImag = espacioTarjeta - altoFranja * 2;
@@ -464,9 +432,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				break;
 		}
 	} else {
-		console.log(
-			"estoy en revisarTextosYFranjas - ModificarEspaciosFranjas y NO hay fondo transparente"
-		);
 		switch (true) {
 			case fr2 == "ambosTextos":
 				altoContenedorImag = espacioTarjeta - altoFranja * 2;
@@ -575,8 +540,8 @@ $alineaDer.addEventListener("click", () => {
 
 // .......................................
 // .. Modificación del color del texto ..
-let $colorTexto = document.getElementById("colorTexto"); // para recuperar el valor del input type color
-let $labelColorTexto = document.querySelector('label[for="colorTexto"]'); // para interactuar con el label del input colorTexto
+let $colorTexto = document.getElementById("colorTexto"); 
+let $labelColorTexto = document.querySelector('label[for="colorTexto"]'); 
 $colorTexto.addEventListener("input", function () {
 	$textoArriba.style.color = $colorTexto.value;
 	$textoAbajo.style.color = $colorTexto.value;
@@ -585,8 +550,8 @@ $colorTexto.addEventListener("input", function () {
 
 // ...........................................
 // Modificación del color del fondo del texto
-let $colorFondoTex = document.getElementById("colorFondoTex"); // para recuperar el valor del input type color  del fondo del texto
-let $labelColorFondoTex = document.querySelector('label[for="colorFondoTex"]'); // para interactuar con el label del input colorTexto del fondo del texto
+let $colorFondoTex = document.getElementById("colorFondoTex"); 
+let $labelColorFondoTex = document.querySelector('label[for="colorFondoTex"]'); 
 let $fondoTexto = document.getElementById("fondoTexto");
 $colorFondoTex.addEventListener("input", function () {
 	aplicarColorDeFondo();
@@ -600,35 +565,27 @@ let aplicarColorDeFondo = () => {
 	let fondoAuxFranja1;
 	let fondoAuxFranja3;
 	if ($colorFondoTex.value === "#ffffff") {
-		console.log("el color de fondo es blanco");
 		fondoAuxFranja1 =
 			"linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 9%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 93%, rgb(118, 97, 97) 100%)";
 		fondoAuxFranja3 =
 			"linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%)";
 		$franja2Aux.style.background = "radial-gradient(circle, #fcfbf2, #bebc99)";
 	} else {
-		console.log("el color de fondo no es blanco");
 		fondoAuxFranja1 = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
 		fondoAuxFranja3 = `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
 	}
 	$labelColorFondoTex.textContent = $colorFondoTex.value.toUpperCase();
 	if (!$ingresoURL.value) {
-		$franja2.style.background = "transparent"; //Debe ser transparente para que no altere el blendMode
+		$franja2.style.background = "transparent"; 
 	}
 	if (!$opcionFondoTransparente.checked) {
 		$franja1.style.background = fondoAuxFranja1;
-		// `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
 		$franja3.style.background = fondoAuxFranja3;
-		// `linear-gradient(to bottom, rgb(118, 97, 97)0%, ${$colorFondoTex.value} 9%,  #FFFFFF 50%, ${$colorFondoTex.value} 93%, rgb(118, 97, 97) 100%)`;
-		// $franja2.style.position = '';
-		// $franja2.style.top = '';
-		// $franja2.style.height = '50vh';
 	} else {
 		$franja1.style.background.color = "transparent";
 		$franja1.style.zIndex = "4";
 		$franja3.style.background = "transparent";
 		$franja3.style.zIndex = "4";
-		// $franja2Aux.style.background = `radial-gradient(circle, #fcfbf2, ${$colorFondoTex.value})`;
 	}
 };
 
@@ -638,15 +595,11 @@ let $opcionFondoTransparente = document.getElementById(
 	"opcionFondoTransparente"
 );
 $opcionFondoTransparente.addEventListener("input", () => {
-	// imagenTodoContenedor();
-
 	revisarTextosYFranjas();
-	// aplicarColorDeFondo();
 });
 
 // ....................................
 // .. Botones para contorno de texto ..
-// .. Boton Ninguno ..
 
 // .......................................
 // .. Funcion que aplica contornos
@@ -655,7 +608,7 @@ let obtenerElementoTexto = (lugar) => {
 };
 
 let aplicaContornos = (lugar, grosor, color) => {
-	let ubicacion = obtenerElementoTexto(lugar); // Para que retorne el lugar del DOM
+	let ubicacion = obtenerElementoTexto(lugar); 
 	if (grosor !== 0) {
 		ubicacion.style.webkitTextStroke = `${grosor}px ${color}`; /* Para navegadores WebKit (Safari, Chrome) */
 		ubicacion.style.textStroke = `${grosor}px ${color}`; /* Estándar */
@@ -685,6 +638,8 @@ $opcionContOscuro.addEventListener("click", () => {
 	aplicaContornos("Abajo", 1, "black");
 });
 
+
+
 // ***********************
 // ***********************
 // Boton modo oscuro / claro
@@ -693,9 +648,9 @@ $opcionContOscuro.addEventListener("click", () => {
 let $botonModo = document.getElementById("botonModo");
 
 let $nav = document.getElementById("nav");
-let $modoClaOsc = document.getElementById("modoClaOsc"); // Toma el <p> para modificarlo
+let $modoClaOsc = document.getElementById("modoClaOsc"); 
 
-let banderaModoOscuro = 0; // Variable para cambiar entre modo claro y modo oscuro
+let banderaModoOscuro = 0; 
 document.body.classList.add("modoClaro");
 $botonModo.addEventListener("click", () => {
 	banderaModoOscuro = !banderaModoOscuro;
@@ -710,9 +665,13 @@ $botonModo.addEventListener("click", () => {
 	}
 });
 
-// .....................................
-// .. Boton descarga
 
+
+// ***********************
+// ***********************
+// Boton descarga
+// ***********************
+// ***********************
 let $descargaBoton = document.getElementById("descargaBoton");
 let $imagen = document.getElementById("tarjeta");
 
