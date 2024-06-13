@@ -12,7 +12,8 @@ body.modoOscuro {
   --color-inputRangeHover: #78766e;
   --color-bordeBoton: 1.5px solid #9ea2a7;
   --color-texto: #ffffff;
-  
+  --color-error: #ff0000;
+
   --border-radius: 3px;
 }
 
@@ -31,7 +32,8 @@ body.modoClaro {
   --color-texto: #0c0b0b;
   --color-title-panel: rgb(33 33 33 / 80%);
   --color-title-control: rgb(33 33 33 / 70%);
-;
+  --color-error: #ff0000;
+
   --border-radius: 3px;
 }
 
@@ -48,6 +50,10 @@ body {
   font-family: 'Roboto', sans-serif;
   position: relative;
   background: var(--color-fondoBody);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 3px;
 }
 
 nav {
@@ -77,7 +83,6 @@ ul {
   background: var(--color-ul);
   box-shadow: 0px 1px 8px 0.1px #1c1a1a;
   padding-block: 5px;
-
 }
 
 li:hover {
@@ -89,20 +94,24 @@ button {
   cursor: pointer;
 }
 
-button:focus, select:focus,  input[type="text"]:focus, input[type="number"]:focus {
-      box-shadow: 0px 1px 1px 0px #626262;
-      transform: scale(1.05);
-      border-color:  2px solid black;
-}
-
-select:focus{
+button:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="number"]:focus {
   box-shadow: 0px 1px 1px 0px #626262;
-      transform: scale(1.05);
-      border-color:  2px solid black;
-      background: #bdc9c0;
+  transform: scale(1.05);
+  border-color: 2px solid black;
 }
 
-input[type="color"]:focus, input[type="checkbox"]:focus {  
+select:focus {
+  box-shadow: 0px 1px 1px 0px #626262;
+  transform: scale(1.05);
+  border-color: 2px solid black;
+  background: #bdc9c0;
+}
+
+input[type="color"]:focus,
+input[type="checkbox"]:focus {
   transform: scale(1.2);
 }
 
@@ -159,8 +168,8 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  white-space: nowrap;   
-  overflow: hidden !important;   
+  white-space: nowrap;
+  overflow: hidden !important;
 }
 
 .franja h2 {
@@ -170,28 +179,26 @@ i {
   color: black;
   padding-block: 5px;
   padding-inline: 10px;
-  text-overflow: ellipsis;   
-  overflow: hidden; 
-  z-index:5;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  z-index: 5;
 }
 
 #franja1 {
-  /* height: 66px; */
   padding-block: 15px;
   background: linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 9%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 93%, rgb(118, 97, 97) 100%);
   position: absolute;
-  top:0;
-  z-index:4;
+  top: 0;
+  z-index: 4;
 }
 
 #franja2 {
-  height: 50vh;
-  object-fit: contain;
+  height: -webkit-fill-available;
   background: radial-gradient(circle, #fcfbf2, #bebc99);
   position: relative;
 }
 
-#franja2Aux{
+#franja2Aux {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -206,19 +213,30 @@ img {
   object-fit: cover;
 }
 
+#imgError {
+  font-size: 10px;
+  color: var(--color-error);
+  font-weight: 600;
+  padding-left: 3px;
+}
+
 #franja3 {
   background: linear-gradient(to bottom, rgb(118, 97, 97)0%, #a3a37a 7%, #FFFFFF 30%, #FFFFFF 50%, #a3a37a 91%, rgb(118, 97, 97) 100%);
   padding-block: 15px;
   height: 66px;
   position: absolute;
-  bottom:0;
-  z-index:4;
+  bottom: 0;
+  z-index: 4;
 }
 
 
 /* Formato Paneles de imagen y texto - Inicio */
 .hidden {
   display: none;
+}
+
+.ocultoSinModificar {
+  visibility: hidden;
 }
 
 #panel {
@@ -230,7 +248,7 @@ img {
   right: 0px;
   background-color: var(--color-panel);
   box-shadow: 0px 0px 5px 0px #526534;
-  z-index:10;
+  z-index: 10;
 }
 
 #panelImagen {
@@ -274,14 +292,13 @@ img {
 }
 
 .panelInterior {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 label,
 ::placeholder,
 button {
   color: var(--color-texto);
-
 }
 
 .contenIngreso input,
@@ -311,10 +328,50 @@ button {
   align-items: center;
 }
 
+#boxSubirImg {
+  display: flex;
+  gap: 10px;
+}
+
+#boxIngURL {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+}
+
+#ingresoURL {
+  width: 100%;
+  padding-right: 20px;
+}
+
+#btnBorrarURL {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px;
+}
+
+#btnBorrarURL:hover {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+#subirImagenIcono {
+  background: var(--color-ingresos);
+  color: var(--color-texto);
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  padding: 6px;
+}
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: rgb(16, 16, 16) !important;   
-  background-color: rgb(63, 57, 57) !important; 
+  -webkit-text-fill-color: rgb(16, 16, 16) !important;
+  background-color: rgb(63, 57, 57) !important;
 }
 
 #cierrePanel:hover,
@@ -327,7 +384,6 @@ input:-webkit-autofill {
   text-shadow: 0px 0px 0.5px #363131;
   background-color: var(--color-ingresosHover);
 }
-
 
 /* Estilos sólo del panel Texto  */
 .contenIngreso {
@@ -342,7 +398,6 @@ input:-webkit-autofill {
   align-items: center;
   height: 10px;
   margin-top: 5px;
-
 }
 
 .tilde label {
@@ -358,27 +413,27 @@ select {
 
 #formatoTexto select {
   margin-bottom: 3px;
-  display:flex;
+  display: flex;
   align-items: center;
-  
 }
 
 select {
-    padding-right: 25px;
-    padding-top: 8px !important;
-    padding-bottom: 10px !important;
-    margin: 0px;
-    border: 0px;
+  padding-right: 25px;
+  padding-top: 8px !important;
+  padding-bottom: 10px !important;
+  margin: 0px;
+  border: 0px;
 }
 
 
-select::-webkit-inner-spin-button { /* para el formato de las flecha*/
+select::-webkit-inner-spin-button {
+  /* para el formato de las flecha*/
   background-color: #f4f3e7bd;
   margin: 0;
 }
 
-select::-webkit-inner-spin-button:hover{
-  border:0px solid transparent !important;
+select::-webkit-inner-spin-button:hover {
+  border: 0px solid transparent !important;
   border-color: transparent;
 }
 
@@ -436,7 +491,7 @@ input[type="color"] {
   margin-top: 3px;
 }
 
-input[type="color"]::-webkit-color-swatch {   
+input[type="color"]::-webkit-color-swatch {
   border-radius: 50%;
   height: 15px;
   width: 20px;
@@ -468,7 +523,8 @@ input[type="color"]::-webkit-color-swatch {
   column-gap: 5px;
 }
 
-.otrasOpcionesImagen, #otrasOpcionesImagen {
+.otrasOpcionesImagen,
+#otrasOpcionesImagen {
   width: 100%;
 }
 
@@ -481,6 +537,7 @@ input[type="color"]::-webkit-color-swatch {
   font-weight: 400;
   font-size: 13px;
 }
+
 .contenIngresoImFilt {
   display: flex;
   flex-direction: column;
@@ -498,8 +555,8 @@ input[type="color"]::-webkit-color-swatch {
 
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  width: 15px;  
-  height: 15px;  
+  width: 15px;
+  height: 15px;
   background: var(--color-fomatoBotonInputRange);
   border: var(--color-bordeBoton);
   border-radius: 50%;
@@ -536,7 +593,10 @@ footer {
   display: flex;
   justify-content: center;
   width: 100%;
-  /* margin-bottom: 12px; */
+}
+
+#botonDescarga {
+  text-align:center;
 }
 
 .descargaBoton {
@@ -561,4 +621,3 @@ footer {
   padding-top: 7px;
   text-align: center;
 }
-

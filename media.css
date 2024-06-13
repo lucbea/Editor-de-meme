@@ -42,7 +42,8 @@
   }
 
   .contenedor {
-    margin-bottom: 18px;
+    margin-bottom: 10px;
+    margin-top: 5px;
   }
 }
 
@@ -66,7 +67,7 @@
   }
 
   .contenedor {
-    width: 60%;
+    width: 90%;
     margin-bottom: 18px;
   }
 }
@@ -96,7 +97,7 @@
   }
 
   .contenedor {
-    width: 55%;
+    width: 90%;
     margin-bottom: 18px;
   }
 }

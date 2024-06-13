@@ -103,6 +103,10 @@ let $franja2 = document.getElementById("franja2");
 let $franja3 = document.getElementById("franja3"); 
 let $botonReestablecer = document.getElementById("botonReestablecer"); 
 let $img; 
+let $imgError = document.getElementById("imgError");
+let $subirImagenIcono = document.getElementById('subirImagenIcono');
+let $subirImagenInput = document.getElementById('subirImagenInput');
+let $btnBorrarURL = document.getElementById("btnBorrarURL")
 let $brilloF = document.getElementById("brillo"); 
 let $opacidadF = document.getElementById("opacidad"); 
 let $desenfoqueF = document.getElementById("desenfoque"); 
@@ -170,12 +174,46 @@ let iniciarBlendMode = () => {
 // .. Captura de URL, ingreso de imagen al HTML e inserción de imagen en variable general $img
 let cargarImagen = () => {
 	if ($ingresoURL.value) {
+		$franja2.style.width = "100%";
 		$franja2.innerHTML = "";
 		$franja2.innerHTML = `<img id="img" src="${$ingresoURL.value}" alt="imagen ingresada por URL">`;
-		$img = document.getElementById("img"); 
-		revisarTextosYFranjas();
+		$img = document.getElementById("img");
+		$img.onerror = function () {
+			$franja2.style.width = "0";
+			$imgError.classList.remove("ocultoSinModificar");
+		};
+		$img.onload = function () {
+			$imgError.classList.add("ocultoSinModificar");
+			revisarTextosYFranjas();
+		};
 	}
 };
+
+// .......................................
+// Borrar URL
+$btnBorrarURL.addEventListener("click", () => {
+	$ingresoURL.value = '';
+	$imgError.classList.add("ocultoSinModificar");
+ } )
+
+ // .......................................
+// Subir img desde archivo
+document.addEventListener("DOMContentLoaded", function () {
+	$subirImagenIcono.addEventListener('click', function () {
+		$subirImagenInput.click();
+	});
+
+	$subirImagenInput.addEventListener('change', function () {
+		if ($subirImagenInput.files && $subirImagenInput.files[0]) {
+			let reader = new FileReader();
+			reader.onload = function (e) {
+				$franja2.innerHTML = '';
+				$franja2.innerHTML = `<img id="img" src="${e.target.result}" alt="imagen ingresada desde archivo">`;
+			};
+			reader.readAsDataURL($subirImagenInput.files[0]);
+		}
+	});
+});
 
 // ...........................................
 // Modificación del color del fondo del panel Imagen
@@ -301,7 +339,6 @@ $ingresoTextoSuperior.addEventListener("change", (event) => {
 // .. Ingreso del texto inferior ..
 let $textoAbajo = document.getElementById("textoAbajo");
 let $ingresoTextoInferior = document.getElementById("ingresoTextoInferior");
-
 $ingresoTextoInferior.addEventListener("change", (event) => {
 	event.preventDefault();
 	let textoIngresado = $ingresoTextoInferior.value;
@@ -389,6 +426,7 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 		parseInt($elecEspaciado.value) * 2;
 	let altoContenedorImag = 0; 
 	if ($opcionFondoTransparente.checked) {
+		$franja2.style.height = "100%";
 		switch (true) {
 			case fr2 == "ambosTextos":
 				altoContenedorImag = espacioTarjeta - altoFranja * 2;
@@ -398,7 +436,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja2.style.position = "";
 				$franja2.style.top = "";
 				$franja2.style.bottom = "";
-				$franja2.style.height = "100%";
 				$franja3.style.display = "flex";
 				$franja3.style.background = fr3;
 				$franja3.style.height = altoFranja + "px";
@@ -410,7 +447,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja1.style.height = altoFranja + "px";
 				$franja2.style.position = "absolute";
 				$franja2.style.bottom = "0";
-				$franja2.style.height = "100%";
 				$franja3.style.display = fr3;
 				break;
 			case fr2 == "textoInf":
@@ -418,14 +454,12 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja1.style.display = fr1;
 				$franja2.style.position = "absolute";
 				$franja2.style.top = "0";
-				$franja2.style.height = "100%";
 				$franja3.style.display = "flex";
 				$franja3.style.background = fr3;
 				$franja3.style.height = altoFranja + "px";
 				break;
 			case fr2 == "sinTexto":
 				$franja1.style.display = fr1;
-				$franja2.style.height = "100%";
 				$franja3.style.display = fr3;
 				break;
 			default:
@@ -440,7 +474,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja2.style.position = "";
 				$franja2.style.top = "";
 				$franja2.style.bottom = "";
-				$franja2.style.height = altoContenedorImag + 35 + "px";
 				$franja3.style.display = fr3;
 				$franja3.style.height = altoFranja + "px";
 				break;
@@ -451,7 +484,6 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja2.style.position = "absolute";
 				$franja2.style.top = "";
 				$franja2.style.bottom = "0";
-				$franja2.style.height = altoContenedorImag + 15 + "px";
 				$franja3.style.display = fr3;
 				break;
 			case fr2 == "textoInf":
@@ -460,13 +492,11 @@ let modificarEspacioFranjas = (fr1, fr2, fr3) => {
 				$franja2.style.position = "absolute";
 				$franja2.style.bottom = "";
 				$franja2.style.top = "0";
-				$franja2.style.height = altoContenedorImag + 15 + "px";
 				$franja3.style.display = fr3;
 				$franja3.style.height = altoFranja + "px";
 				break;
 			case fr2 == "sinTexto":
 				$franja1.style.display = fr1;
-				$franja2.style.height = "100%";
 				$franja3.style.display = fr3;
 				break;
 			default:
