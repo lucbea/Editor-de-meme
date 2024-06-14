@@ -245,6 +245,13 @@ img {
 
 .flex {
   display:flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex p{
+  margin-bottom:2.5px;
+  padding-left: 10px;
 }
 
 #panel {
