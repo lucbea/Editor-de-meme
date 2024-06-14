@@ -375,6 +375,7 @@ button {
   border-radius: var(--border-radius);
   font-size: 12px;
   padding: 6px;
+  cursor: pointer;
 }
 
 input:-webkit-autofill {
