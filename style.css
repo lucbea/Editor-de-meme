@@ -85,6 +85,10 @@ ul {
   padding-block: 5px;
 }
 
+.li {
+  color: var(--color-texto)!important;
+}
+
 li:hover {
   transform: scale(1.15);
 }
@@ -213,7 +217,7 @@ img {
   object-fit: cover;
 }
 
-#imgError {
+.imgError {
   font-size: 10px;
   color: var(--color-error);
   font-weight: 600;
@@ -237,6 +241,10 @@ img {
 
 .ocultoSinModificar {
   visibility: hidden;
+}
+
+.flex {
+  display:flex;
 }
 
 #panel {

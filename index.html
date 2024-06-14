@@ -30,19 +30,19 @@
                 <li class="opcion">
                     <button type="button" id="botonImagen" aria-label="Botón de imagen" class="contornoBoton">
                         <i class="fas fa-file-image botonIconoTexto" aria-hidden="true"></i>
-                        <span>IMAGEN</span>
+                        <span class="li">IMAGEN</span>
                     </button>
                 </li>
                 <li class="opcion">
                     <button type="button" id="botonTexto" class="contornoBoton">
                         <i class="fas fa-font botonIconoTexto" aria-hidden="true"></i>
-                        <span>TEXTO</span>
+                        <span class="li">TEXTO</span>
                     </button>
                 </li>
                 <li class="opcion">
                     <button type="button" id="botonModo" class="contornoBoton">
                         <i class="fas fa-lightbulb botonIconoTexto" aria-hidden="true"></i>
-                        <span id="modoClaOsc">MODO OSCURO</span>
+                        <span id="modoClaOsc" class="li">MODO OSCURO</span>
                     </button>
                 </li>
             </ul>
@@ -76,7 +76,7 @@
                         <div class="contenIngresoIm">
                             <div>
                                 <label class="subtitulo" for="ingresoURL">URL</label>
-                                <span id="imgError" class="ocultoSinModificar">Imagen errónea. Revise la URL</span>
+                                <span id="imgError" class="ocultoSinModificar imgError">Error en imagen. Revise URL</span>
                             </div>
                             <div id="boxSubirImg">
                                 <div id="boxIngURL">
@@ -92,7 +92,10 @@
                             </div>
                         </div>
                         <div class="contenIngresoIm">
-                            <h3 class="subtitulo">FONDO</h3>
+                            <div class="flex">
+                                <h3 class="subtitulo">FONDO</h3>
+                                <span id="noAplicaBlend" class="ocultoSinModificar imgError">Cargue imagen.</span>
+                            </div>
                             <div class="contenFondo">
                                 <div id="fondoTextoImg" class="fondoTexto ingresoEtiqueta">
                                     <input id="colorFondo" tabindex="0" type="color" name="colorFondo" value="#FFFFFF">
