@@ -9,6 +9,13 @@ let $cierrePanel = document.getElementById("cierrePanel");
 let $panel = document.getElementById("panel");
 let $panelImagen = document.getElementById("panelImagen");
 let $panelTexto = document.getElementById("panelTexto");
+let $nav = document.getElementById("nav");
+let $tarjeta = document.getElementById("tarjeta");
+let $contenedorImgText = document.getElementById("contenedorImgText");
+let $contenedor = document.getElementById("contenedor");
+let $btnDescarga = document.getElementById("botonDescarga");
+let $foot = document.getElementById("foot");
+let tamanioPantalla = 1;
 
 // ..........................................
 // .. Función para obtener el tamaño de la pantalla ..
@@ -19,29 +26,46 @@ function preguntaTamanioVentana() {
 // .............................................
 // .. Maneja el evento de redimensionamiento para actualizar el tamaño de la pantalla y mostrar o no botón de cierre del panel ..
 window.addEventListener("resize", function () {
-	let tamanioPantalla = preguntaTamanioVentana();
+	tamanioPantalla = preguntaTamanioVentana();
 	if (tamanioPantalla > 1299) {
 		$cierrePanel.style.display = "none";
-		if (
-			$panelImagen.style.display !== "none" ||
-			$panelTexto.style.display !== "none"
-		) {
+		$contenedor.style.width = '60%';
+		$nav.style.paddingRight = '0px';
+		$contenedorImgText.style.marginRight = `0px`;
+		$contenedor.style.marginInline = `auto !important`;
+		$btnDescarga.style.marginRight = '0px';
+		$foot.style.paddingRight = '0px';
+		if ($panelImagen.style.display !== "none" || $panelTexto.style.display !== "none") {
 			$panel.style.display = "block";
 		} else {
 			$panelImagen.style.display = "block";
 			$panel.style.display = "block";
 		}
+		$contenedorImgText.style.marginInline = `auto`;
 	} else {
-		if (
-			$panelImagen.style.display !== "none" ||
-			$panelTexto.style.display !== "none"
-		) {
+		if ($panelImagen.style.display !== "none" || $panelTexto.style.display !== "none") {
 			$cierrePanel.style.display = "flex";
 			$panel.style.display = "block";
+			if (tamanioPantalla > 699 && tamanioPantalla < 1299) {
+				console.log($tarjeta.offsetWidth, tamanioPantalla)
+				$nav.style.paddingRight = '240px';
+				$contenedorImgText.style.marginRight = '240px';
+				$btnDescarga.style.marginRight = '240px';
+				$foot.style.paddingRight = '240px';	
+				$contenedor.style.width= '90%';
+				$contenedor.style.marginInline = 'auto';
+			 }
 		} else {
 			$panelImagen.style.display = "none";
 			$panel.style.display = "none";
+			$nav.style.paddingRight = '0px';
+			$contenedorImgText.style.marginRight = `0px`;
+			$contenedor.style.marginInline = `auto !important`;
+			$btnDescarga.style.marginRight = '0px';
+			$foot.style.paddingRight = '0px';
 		}
+	
+
 	}
 });
 
@@ -56,6 +80,14 @@ $botonImagen.addEventListener("click", (event) => {
 		$cierrePanel.style.display = "none";
 	} else {
 		$cierrePanel.style.display = "flex";
+		if (tamanioVentana > 699 && tamanioVentana < 1300 ) {
+			$nav.style.paddingRight = '240px';
+			$contenedorImgText.style.marginRight = '240px';
+			$contenedor.style.width = '90%';
+			$contenedor.style.marginInline = 'auto';
+			$btnDescarga.style.marginRight = '240px';
+			$foot.style.paddingRight = '240px';
+		}
 	}
 });
 
@@ -70,6 +102,14 @@ $botonTexto.addEventListener("click", (event) => {
 		$cierrePanel.style.display = "none";
 	} else {
 		$cierrePanel.style.display = "flex";
+		if (tamanioVentana > 699 && tamanioVentana < 1300) {
+			$nav.style.paddingRight = '240px';
+			$contenedorImgText.style.marginRight = '240px';
+			$contenedor.style.width = '90%';
+			$contenedor.style.marginInline = 'auto';
+			$btnDescarga.style.marginRight = '240px';
+			$foot.style.paddingRight = '240px';
+		}
 	}
 });
 
@@ -84,6 +124,12 @@ let cierre = () => {
 	$panelImagen.style.display = "none";
 	$cierrePanel.style.display = "none";
 	$panel.style.display = "none";
+	$contenedorImgText.style.marginRight = `0px`;
+	$contenedor.style.marginRight = "0px";
+	$contenedor.style.marginInline = "auto";
+	$nav.style.paddingRight = '0px';
+	$btnDescarga.style.marginRight = '0px';
+	$foot.style.paddingRight = '0px';
 };
 
 
@@ -97,7 +143,6 @@ let cierre = () => {
 // ...................................................
 // .. Inicialización de variables para Panel Imagen ..
 let $ingresoURL = document.getElementById("ingresoURL");
-let $tarjeta = document.getElementById("tarjeta");
 let $franja1 = document.getElementById("franja1");
 let $franja2 = document.getElementById("franja2");
 let $franja3 = document.getElementById("franja3");
@@ -694,7 +739,7 @@ $opcionContOscuro.addEventListener("click", () => {
 // ***********************
 // ***********************
 let $botonModo = document.getElementById("botonModo");
-let $nav = document.getElementById("nav");
+
 let $modoClaOsc = document.getElementById("modoClaOsc");
 let banderaModoOscuro = 0;
 document.body.classList.add("modoClaro");
@@ -725,3 +770,13 @@ $descargaBoton.addEventListener("click", () =>
 		.toBlob(document.getElementById("tarjeta"))
 		.then((blob) => window.saveAs(blob, "meme.png"))
 );
+
+tamanioPantalla = preguntaTamanioVentana();
+if (tamanioPantalla > 699 && tamanioPantalla < 1299) {
+	$nav.style.paddingRight = '240px';
+	$contenedorImgText.style.marginRight = `240px`;
+	$contenedor.style.width = '90%';
+	$contenedor.style.marginInline = `auto`;
+	$btnDescarga.style.marginRight = '240px';
+	$foot.style.paddingRight = '240px';
+} 

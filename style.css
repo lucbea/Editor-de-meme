@@ -151,6 +151,7 @@ i {
 
 .contenedor {
   width: 100%;
+  max-width: 750px;
   margin-top: 13px;
   margin-bottom: 8px;
   margin-inline: auto;
@@ -245,13 +246,6 @@ img {
 
 .flex {
   display:flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.flex p{
-  margin-bottom:2.5px;
-  padding-left: 10px;
 }
 
 #panel {
@@ -382,7 +376,6 @@ button {
   border-radius: var(--border-radius);
   font-size: 12px;
   padding: 6px;
-  cursor: pointer;
 }
 
 input:-webkit-autofill {

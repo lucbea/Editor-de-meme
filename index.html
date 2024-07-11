@@ -17,7 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
         integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
         crossorigin="anonymous"></script>
-    <title>Editor de Memes</title>
+    <link rel="icon" href="./ImgReadme/favicon.png" type="image/x-icon">
+    <title>Editor de Meme</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./media.css">
 </head>
@@ -51,7 +52,7 @@
 
     <main>
         <section id="contenedorImgText" class="contenedorImgText">
-            <div class="contenedor">
+            <div id="contenedor" class="contenedor">
                 <div id="tarjeta" class="tarjeta">
                     <div class="franja" id="franja1">
                         <h2 id="textoArriba">TOP TEXT</h2>
@@ -74,9 +75,9 @@
                     <h3 class="tituloPanel">IMAGEN</h3>
                     <div class="panelInterior">
                         <div class="contenIngresoIm">
-                            <div class="flex">
+                            <div>
                                 <label class="subtitulo" for="ingresoURL">URL</label>
-                                <p id="imgError" class="ocultoSinModificar imgError">Error en imagen. Revise URL</p>
+                                <span id="imgError" class="ocultoSinModificar imgError">Error en imagen. Revise URL</span>
                             </div>
                             <div id="boxSubirImg">
                                 <div id="boxIngURL">
@@ -84,17 +85,17 @@
                                         placeholder="" required>
                                     <button id="btnBorrarURL" class="borrarURL">x</button>
                                 </div>
-                                <div id="subirImagenIcono">
+                                <button id="subirImagenIcono">
                                     <i class="fas fa-upload"></i>
                                     <input type="file" id="subirImagenInput" name="subirImagen" accept="image/*"
                                     class="hidden">
-                                </div>
+                                    </button>
                             </div>
                         </div>
                         <div class="contenIngresoIm">
                             <div class="flex">
                                 <h3 class="subtitulo">FONDO</h3>
-                                <p id="noAplicaBlend" class="ocultoSinModificar imgError">Cargue imagen.</p>
+                                <span id="noAplicaBlend" class="ocultoSinModificar imgError">Cargue imagen.</span>
                             </div>
                             <div class="contenFondo">
                                 <div id="fondoTextoImg" class="fondoTexto ingresoEtiqueta">
@@ -273,7 +274,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer id="foot">
         <p id="copy">© LucBea 2024</p>
     </footer>
 
