@@ -1,3 +1,4 @@
+
 // ***********************
 // ***********************
 // Ambos paneles
@@ -28,7 +29,7 @@ function preguntaTamanioVentana() {
 window.addEventListener("resize", function () {
 	tamanioPantalla = preguntaTamanioVentana();
 	if (tamanioPantalla > 1299) {
-		$cierrePanel.style.display = "none";
+		cerrarObjTrans([$cierrePanel]);
 		$contenedor.style.width = '60%';
 		$nav.style.paddingRight = '0px';
 		$contenedorImgText.style.marginRight = `0px`;
@@ -36,72 +37,70 @@ window.addEventListener("resize", function () {
 		$btnDescarga.style.marginRight = '0px';
 		$foot.style.paddingRight = '0px';
 		if ($panelImagen.style.display !== "none" || $panelTexto.style.display !== "none") {
-			$panel.style.display = "block";
+			mostrarObjTrans([$panel])
 		} else {
-			$panelImagen.style.display = "block";
-			$panel.style.display = "block";
+			cerrarObjTrans([$panel, $cierrePanel]);
 		}
 		$contenedorImgText.style.marginInline = `auto`;
 	} else {
 		if ($panelImagen.style.display !== "none" || $panelTexto.style.display !== "none") {
-			$cierrePanel.style.display = "flex";
-			$panel.style.display = "block";
+			mostrarObjTrans([$panel, $cierrePanel]);
 			if (tamanioPantalla > 699 && tamanioPantalla < 1299) {
-				console.log($tarjeta.offsetWidth, tamanioPantalla)
 				$nav.style.paddingRight = '240px';
 				$contenedorImgText.style.marginRight = '240px';
 				$btnDescarga.style.marginRight = '240px';
-				$foot.style.paddingRight = '240px';	
-				$contenedor.style.width= '90%';
+				$foot.style.paddingRight = '240px';
+				$contenedor.style.width = '90%'; 
 				$contenedor.style.marginInline = 'auto';
-			 }
+
+				$nav.classList.add('transition_element');
+				$contenedorImgText.classList.add('transition_element');
+				$btnDescarga.classList.add('transition_element');
+				$foot.classList.add('transition_element');
+				$contenedor.classList.add('transition_element');
+
+				setTimeout(function () {
+					$nav.style.transition = 'padding-right 0.5s ease';
+					$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+					$btnDescarga.style.transition = 'margin-right 0.5s ease';
+					$foot.style.transition = 'padding-right 0.5s ease';
+					$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+				}, 100);
+			}
 		} else {
-			$panelImagen.style.display = "none";
-			$panel.style.display = "none";
+			cerrarObjTrans([$cierrePanel, $panel]);
 			$nav.style.paddingRight = '0px';
 			$contenedorImgText.style.marginRight = `0px`;
 			$contenedor.style.marginInline = `auto !important`;
 			$btnDescarga.style.marginRight = '0px';
 			$foot.style.paddingRight = '0px';
-		}
-	
 
+			$nav.classList.remove('transition_element');
+			$contenedorImgText.classList.remove('transition_element');
+			$btnDescarga.classList.remove('transition_element');
+			$foot.classList.remove('transition_element');
+			$contenedor.classList.remove('transition_element');
+
+			setTimeout(function () {
+				$nav.style.transition = 'padding-right 0.5s ease';
+				$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+				$btnDescarga.style.transition = 'margin-right 0.5s ease';
+				$foot.style.transition = 'padding-right 0.5s ease';
+				$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+			}, 100);
+		}
 	}
 });
 
 // ...............................................
 // .. Muestra panel de imagen con o sin boton X ..
 $botonImagen.addEventListener("click", (event) => {
-	$panelImagen.style.display = "block";
-	$panel.style.display = "block";
-	$panelTexto.style.display = "none";
+	cerrarObjTrans([$panelTexto])
+	mostrarObjTrans([$panel, $panelImagen, $cierrePanel]);
 	tamanioVentana = preguntaTamanioVentana();
 	if (tamanioVentana > 1299) {
-		$cierrePanel.style.display = "none";
+		cerrarObjTrans([$cierrePanel]);
 	} else {
-		$cierrePanel.style.display = "flex";
-		if (tamanioVentana > 699 && tamanioVentana < 1300 ) {
-			$nav.style.paddingRight = '240px';
-			$contenedorImgText.style.marginRight = '240px';
-			$contenedor.style.width = '90%';
-			$contenedor.style.marginInline = 'auto';
-			$btnDescarga.style.marginRight = '240px';
-			$foot.style.paddingRight = '240px';
-		}
-	}
-});
-
-// ..............................................
-// .. Muestra panel de texto con o sin boton X ..
-$botonTexto.addEventListener("click", (event) => {
-	$panelTexto.style.display = "block";
-	$panel.style.display = "block";
-	$panelImagen.style.display = "none";
-	tamanioVentana = preguntaTamanioVentana();
-	if (tamanioVentana > 1299) {
-		$cierrePanel.style.display = "none";
-	} else {
-		$cierrePanel.style.display = "flex";
 		if (tamanioVentana > 699 && tamanioVentana < 1300) {
 			$nav.style.paddingRight = '240px';
 			$contenedorImgText.style.marginRight = '240px';
@@ -109,6 +108,54 @@ $botonTexto.addEventListener("click", (event) => {
 			$contenedor.style.marginInline = 'auto';
 			$btnDescarga.style.marginRight = '240px';
 			$foot.style.paddingRight = '240px';
+			$nav.classList.add('transition_element');
+			$contenedorImgText.classList.add('transition_element');
+			$btnDescarga.classList.add('transition_element');
+			$foot.classList.add('transition_element');
+			$contenedor.classList.add('transition_element');
+
+			setTimeout(function () {
+				$nav.style.transition = 'padding-right 0.5s ease';
+				$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+				$btnDescarga.style.transition = 'margin-right 0.5s ease';
+				$foot.style.transition = 'padding-right 0.5s ease';
+				$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+			}, 100);
+
+		}
+	}
+});
+
+// ..............................................
+// .. Muestra panel de texto con o sin boton X ..
+$botonTexto.addEventListener("click", (event) => {
+	cerrarObjTrans([$panelImagen]);
+	mostrarObjTrans([$panel, $panelTexto, $cierrePanel]);
+	tamanioVentana = preguntaTamanioVentana();
+	if (tamanioVentana > 1299) {
+		cerrarObjTrans([$cierrePanel]);
+	} else {
+		if (tamanioVentana > 699 && tamanioVentana < 1300) {
+			$nav.style.paddingRight = '240px';
+			$contenedorImgText.style.marginRight = '240px';
+			$contenedor.style.width = '90%';
+			$contenedor.style.marginInline = 'auto';
+			$btnDescarga.style.marginRight = '240px';
+			$foot.style.paddingRight = '240px';
+			$nav.classList.add('transition_element');
+			$contenedorImgText.classList.add('transition_element');
+			$btnDescarga.classList.add('transition_element');
+			$foot.classList.add('transition_element');
+			$contenedor.classList.add('transition_element');
+
+			setTimeout(function () {
+				$nav.style.transition = 'padding-right 0.5s ease';
+				$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+				$btnDescarga.style.transition = 'margin-right 0.5s ease';
+				$foot.style.transition = 'padding-right 0.5s ease';
+				$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+			}, 100);
+
 		}
 	}
 });
@@ -120,18 +167,55 @@ $cierrePanel.addEventListener("click", (event) => cierre());
 // ...............................
 // .. Función cierre de paneles ..
 let cierre = () => {
-	$panelTexto.style.display = "none";
-	$panelImagen.style.display = "none";
-	$cierrePanel.style.display = "none";
-	$panel.style.display = "none";
+	cerrarObjTrans([$cierrePanel, $panelTexto, $panelImagen, $panel]);
 	$contenedorImgText.style.marginRight = `0px`;
 	$contenedor.style.marginRight = "0px";
 	$contenedor.style.marginInline = "auto";
 	$nav.style.paddingRight = '0px';
 	$btnDescarga.style.marginRight = '0px';
 	$foot.style.paddingRight = '0px';
+
+	$nav.classList.remove('transition_element');
+	$contenedorImgText.classList.remove('transition_element');
+	$btnDescarga.classList.remove('transition_element');
+	$foot.classList.remove('transition_element');
+	$contenedor.classList.remove('transition_element');
+
+	setTimeout(function () {
+		$nav.style.transition = 'padding-right 0.5s ease';
+		$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+		$btnDescarga.style.transition = 'margin-right 0.5s ease';
+		$foot.style.transition = 'padding-right 0.5s ease';
+		$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+	}, 100);
+
 };
 
+
+function mostrarObjTrans(paneles) {
+	paneles.forEach($pan => {
+		if ($pan === $cierrePanel) {
+			$cierrePanel.style.display = "flex";
+		} else { 
+			$pan.style.display = "block"; 
+		} 
+		$pan.style.transition = "opacity 0.5s ease";
+		setTimeout(() => {
+			$pan.style.opacity = "1";
+		}, 5);
+	});
+}
+
+
+function cerrarObjTrans(paneles) {
+	paneles.forEach($pan => {
+		$pan.style.opacity = "0";
+		$pan.style.transition = "opacity 0.5s ease";
+		setTimeout(() => {
+			$pan.style.display = "none";
+		}, 5); 
+	});
+}
 
 
 // ***********************
@@ -312,7 +396,7 @@ let aplicarBlendMode = () => {
 	if ($otrasOpcionesImagen.value === "unset") {
 		$colorFondo.value = "#FFFFFF";
 		$labelColorFondo.textContent = "#FFFFFF";
-	}	
+	}
 };
 
 // ...............................................
@@ -771,12 +855,40 @@ $descargaBoton.addEventListener("click", () =>
 		.then((blob) => window.saveAs(blob, "meme.png"))
 );
 
+// *************************
+// *************************
+// Inicialización de diseño
+// *************************
+// *************************
 tamanioPantalla = preguntaTamanioVentana();
-if (tamanioPantalla > 699 && tamanioPantalla < 1299) {
+if (tamanioPantalla > 699 && tamanioPantalla < 1300) {
+	mostrarObjTrans([$panel, $panelTexto, $cierrePanel])
 	$nav.style.paddingRight = '240px';
 	$contenedorImgText.style.marginRight = `240px`;
 	$contenedor.style.width = '90%';
 	$contenedor.style.marginInline = `auto`;
 	$btnDescarga.style.marginRight = '240px';
 	$foot.style.paddingRight = '240px';
-} 
+
+	$nav.classList.add('transition_element');
+	$contenedorImgText.classList.add('transition_element');
+	$btnDescarga.classList.add('transition_element');
+	$foot.classList.add('transition_element');
+	$contenedor.classList.add('transition_element');
+
+	setTimeout(function () {
+		$nav.style.transition = 'padding-right 0.5s ease';
+		$contenedorImgText.style.transition = 'margin-right 0.5s ease';
+		$btnDescarga.style.transition = 'margin-right 0.5s ease';
+		$foot.style.transition = 'padding-right 0.5s ease';
+		$contenedor.style.transition = 'width 0.5s ease, margin-inline 0.5s ease';
+	}, 100);
+} else 
+{  if (tamanioPantalla > 1299) {
+	cerrarObjTrans([$cierrePanel, $panelImagen]);
+	mostrarObjTrans([$panel, $panelTexto])	
+	}  else {
+		cerrarObjTrans([$cierrePanel, $panelImagen, $panelTexto, $panel]) 
+	} 
+}
+

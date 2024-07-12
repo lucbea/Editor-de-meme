@@ -630,3 +630,24 @@ footer {
   padding-top: 7px;
   text-align: center;
 }
+
+.transition_element {
+  transition: padding-right 0.5s ease, margin-right 0.5s ease;
+}
+
+/* Estilo inicial para los paneles */
+#panelImagen,
+#panelTexto {
+  /* max-height: 0; */
+  opacity: 0;
+  /* overflow: hidden; */
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+/* Mostrar los paneles */
+#panelImagen.mostrar,
+#panelTexto.mostrar {
+  /* max-height: 500px; */
+  /* Ajusta la altura máxima según sea necesario */
+  opacity: 1;
+}
